@@ -1,6 +1,6 @@
 function searchMovies() {
     let searchValue = document.getElementById("searchBox").value;
-    let searchURL = `https://api.themoviedb.org/3/search/movie?api_key=3acce3637bdf435613be4024ee1100f6&language=en-US&query=${searchValue}&page=1&include_adult=false`;
+    let searchURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchValue}&page=1&include_adult=false`;
     const req = new Request(searchURL, {
         method: "GET",
     });
