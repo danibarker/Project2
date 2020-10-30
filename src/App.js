@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import AutoCompletedText from './AutoCompletedText';
-import './App.css';
+import SearchMovie from './components/SearchMovie'
+import './css/App.css';
 
 class App extends Component {
   render() {
     return (
+     
       <div className="App">
-        <AutoCompletedText />
+        <SearchMovie />
+        
+
       </div>
+      
     );
   }
 }
