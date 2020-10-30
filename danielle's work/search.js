@@ -1,3 +1,4 @@
+const apiKey = require('./api-key')
 function searchMovies() {
     let searchValue = document.getElementById("searchBox").value;
     let searchURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchValue}&page=1&include_adult=false`;
@@ -27,3 +28,5 @@ function searchMovies() {
             });
         });
 }
+
+module.exports.searchMovies = searchMovies 
