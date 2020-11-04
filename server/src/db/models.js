@@ -39,14 +39,11 @@ const userSchema = new mongoose.Schema(
                 },
             },
         ],
-        
     },
     {
         timestamps: true,
     }
 );
-
-
 
 const User = mongoose.model("User", userSchema);
 userSchema.virtual("warnings", {
@@ -84,13 +81,31 @@ const warningSchema = new mongoose.Schema(
         movieID: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: "Movie"
+            ref: "Movie",
         },
         categoryID: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: "Category"
-        }
+            ref: "Category",
+        },
+        frequencyID: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Frequency",
+        },
+        typeID: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Type",
+        },
+        severityID: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Severity",
+        },
+        description: {
+            type: String,
+        },
     },
     {
         timestamps: true,
@@ -98,18 +113,53 @@ const warningSchema = new mongoose.Schema(
 );
 const Warning = mongoose.model("Warning", warningSchema);
 
-const categorySchema = new mongoose.Schema(
-    {
-        title: {
-            type: String,
-            required: true,
-        }
-    }
-)
-const Category = mongoose.model("Category", categorySchema)
+const categorySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+});
+const Category = mongoose.model("Category", categorySchema);
+const frequencySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+});
+const Frequency = mongoose.model("Type", frequencySchema);
+const severitySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+});
+const Severity = mongoose.model("Severity", severitySchema);
+const typeSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+});
+const Type = mongoose.model("Type", typeSchema);
 categorySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "categoryID",
 });
-module.exports = { User, Movie, Warning, Category};
+frequencySchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "frequencyID",
+});
+typeSchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "typeID",
+});
+severitySchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "severityID",
+});
+
+module.exports = { User, Movie, Warning, Category, Frequency, Type, Severity };
