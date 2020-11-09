@@ -126,7 +126,7 @@ const frequencySchema = new mongoose.Schema({
         required: true,
     },
 });
-const Frequency = mongoose.model("Type", frequencySchema);
+const Frequency = mongoose.model("Frequency", frequencySchema);
 const severitySchema = new mongoose.Schema({
     title: {
         type: String,
