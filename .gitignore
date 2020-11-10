@@ -2,3 +2,4 @@ node_modules
 secrets.js
 api-key.js
 databasef*.*
+.DS_Store
