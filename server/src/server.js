@@ -1,10 +1,23 @@
-// inserting movies into db
-require ('./db/mongoose')
-const Movie = require("./db/models")
-const movie = new Movie({title: "Bitter Moon", tmdb:16573})
-movie.save()
+//  Create a server
+const express = require("express")
+require("./db/mongoose")
+const cors = require("cors")
 
+const adminRouter = require("./routers/admin")
+const tmdbRouter = require("./routers/tmdb")
+const app = express()
 
-// Find movies in the db
-const foundMovie = Movie.findOne({title:"Bitter Moon"})
-console.log(foundMovie)
+const port = process.env.PORT || 3001
+
+app.use(cors())
+
+app.use(express.json())
+
+app.use("/admin", adminRouter)
+app.use("/tmdb", tmdbRouter)
+
+app.listen(port, () => {
+    console.log("Server is actually listening on PORT:", port)
+    
+})
+

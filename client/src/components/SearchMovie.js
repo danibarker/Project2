@@ -1,5 +1,5 @@
 import React from "react";
-import { apiKey } from "./api-key";
+
 import "../css/App.css";
 
 export default class SearchMovie extends React.Component {
@@ -11,32 +11,31 @@ export default class SearchMovie extends React.Component {
         };
     }
 
-    onTextChange = (e) => {
-        let suggestions = [];
-        const searchValue = e.target.value;
-        let searchURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchValue}&page=1&include_adult=false`;
-        const req = new Request(searchURL, {
-            method: "GET",
-        });
-        fetch(req)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.results) {
-                    data.results.forEach((movie) => {
-                        if (suggestions.length < 6) {
-                            suggestions.push(movie.original_title);
-                        }
-                    });
-                }
-            })
-            .then(() => {
-                this.setState(() => ({
-                    suggestions
-                }));
-            });
+    onTextChange = async (e) => {
         this.setState(() => ({
             text: searchValue,
         }));
+        let suggestions = [];
+        const searchValue = e.target.value;
+        console.log(searchValue);
+        const response= await fetch(`http://localhost:3001/tmdb/findMovie?searchValue=${searchValue}`);
+        const result= await response.json();
+        console.log('the result', result)
+        if (result.results){
+            result.results.forEach((movie)=>{
+                if (suggestions.length<6){
+                     suggestions.push(movie.title)
+                }
+           
+        }) 
+        }
+        
+
+        this.setState(() => ({
+            suggestions
+        }));
+  
+        
     };
 
     selectedText(value) {
@@ -66,7 +65,7 @@ export default class SearchMovie extends React.Component {
         const { text, suggestions } = this.state;
         return (
             <div id="notebooks">
-                <h2>MovieFy</h2>
+                <h2>The warning movie database</h2>
                 <h3>Search the movie content</h3>
                 <input
                     id="query"
