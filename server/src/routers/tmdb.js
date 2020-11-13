@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const fetch = require("node-fetch");
-const {apiKey} = require("./apikey");
+const {apiKey} = require("./apiKey");
 
 
 router.get("/findMovie", async (req, res) => {

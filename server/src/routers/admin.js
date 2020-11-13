@@ -3,7 +3,7 @@ const express = require("express");
 const { Category, User } = require("../db/models");
 const router = new express.Router();
 const fetch = require("node-fetch");
-const {apiKey} = require("./apikey");
+const {apiKey} = require("./apiKey");
 
 
 router.post("/addCategory",  async (req, res) => {
