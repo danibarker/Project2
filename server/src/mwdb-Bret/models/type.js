@@ -4,7 +4,6 @@ const schema = mongoose.Schema;
 
 const typeSchema = new schema(
   {
-    id: { type: String, required: true },
     type: { type: String, required: true }
   }
 );
