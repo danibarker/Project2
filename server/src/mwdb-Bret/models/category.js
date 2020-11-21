@@ -4,7 +4,6 @@ const schema = mongoose.Schema;
 
 const categorySchema = new schema(
   {
-    id: { type: String, required: true },
     category: { type: String, required: true }
   }
 );
