@@ -4,7 +4,6 @@ const schema = mongoose.Schema;
 
 const frequencySchema = new schema(
   {
-    id: { type: String, required: true },
     frequency: { type: Number, required: true }
   }
 );
