@@ -82,13 +82,13 @@ router.get('/warnings', warning_controller.warning_list);
 router.post('/category/create', category_controller.category_create_post);
 
 // POST request to delete category.
-router.post('/category/:category/delete', category_controller.category_delete_post);
+router.post('/category/:id/delete', category_controller.category_delete_post);
 
 // POST request to update category.
-router.post('/category/:category/update', category_controller.category_update_post);
+router.post('/category/:id/update', category_controller.category_update_post);
 
 // GET request for one category.
-router.get('/category/:category', category_controller.category_detail);
+router.get('/category/:id', category_controller.category_detail);
 
 // GET request for list of all category.
 router.get('/categories', category_controller.category_list);
