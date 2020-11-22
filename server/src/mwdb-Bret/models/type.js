@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 const typeSchema = new schema(
   {
-    type: { type: String, required: true }
+    type: { type: String, required: true, unique: true }
   }
 );
 
