@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 const severitySchema = new schema(
   {
-    severity: { type: String, required: true }
+    severity: { type: String, required: true, unique: true }
   }
 );
 
