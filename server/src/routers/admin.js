@@ -2,7 +2,7 @@ const express = require("express");
 const { Category, User} = require("../db/models")
 const router = new express.Router();
 const fetch = require("node-fetch");
-const {apiKey} = require("./apiKey");
+const {apiKey} = require("./api-key");
 
 router.get("/getUsers", async (req, res) => {
     console.log('hey');

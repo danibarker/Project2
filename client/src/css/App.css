@@ -52,12 +52,7 @@ a {
 }
 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+
 @media screen and (min-width:600px) {
   
   #notebooks {
@@ -144,6 +139,7 @@ ul {
   margin-left: auto;
   margin-right: auto;
   width: 200px;
+}
 
 ul {
     margin: 0 auto;
