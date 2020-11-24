@@ -14,7 +14,7 @@ export default class SearchMovie extends React.Component {
     
     onTextChange = async (e) => {
         this.setState(() => ({
-            text: searchValue,
+            suggestions
         }));
         let suggestions = [];
 
@@ -71,7 +71,7 @@ export default class SearchMovie extends React.Component {
         const { text, suggestions } = this.state;
         return (
             <div id="notebooks">
-                <h2>MovieFy</h2>
+                <h2>The warning movie database</h2>
                 <h3>Search the movie content</h3>
                 <input
                     id="query"
