@@ -16,6 +16,7 @@ a {
   font-weight: bold;
 }
 
+
 .MovList{
   display: flex;
   flex-wrap: wrap;
@@ -57,18 +58,20 @@ a {
   }
   to {
     transform: rotate(360deg);
+@media screen and (min-width:600px) {
+  
+  #notebooks {
+    position: absolute; 
+    left: 50%; 
+    margin-left: -250px; 
+    margin-top: 35px;
+    width: 450px;
   }
 }
 
 li {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.05);
-    background-image:
-        linear-gradient(90deg,
-        #FFD32E 10px,
-        #EEE 10px,
-        #EEE 11px,
-        transparent 11px);
     padding: 10px 15px 10px 25px;
     border: 1px solid #CCC;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
@@ -90,6 +93,15 @@ ul {
   border-right: none;
 }
 
+.red {
+  color:red;
+}
+.yellow {
+  color:orange;
+}
+.green {
+  color: green;
+}
 #query {
     width: 100%;
     box-sizing: border-box;
@@ -104,11 +116,6 @@ ul {
 
 #notebooks {
     background: whitesmoke;
-    position: absolute;
-    left: 50%;
-    margin-left: -250px;
-    margin-top: 35px;
-    width: 450px;
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -138,4 +145,13 @@ ul {
   margin-right: auto;
   width: 200px;
 
+ul {
+    margin: 0 auto;
+    padding: 0;
+    max-height: 390px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0 5px;
+    border-left: none;
+    border-right: none;
 }

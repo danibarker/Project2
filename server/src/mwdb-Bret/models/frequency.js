@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 const frequencySchema = new schema(
   {
-    frequency: { type: Number, required: true }
+    frequency: { type: String, required: true, unique: true }
   }
 );
 

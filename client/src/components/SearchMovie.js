@@ -1,7 +1,8 @@
 import React from "react";
-
 import "../css/App.css";
 
+
+const serverURL = 'http://localhost:9000'
 export default class SearchMovie extends React.Component {
     constructor(props) {
         super(props);
@@ -10,32 +11,37 @@ export default class SearchMovie extends React.Component {
             text: "",
         };
     }
-
+    
     onTextChange = async (e) => {
-        this.setState(() => ({
-            text: searchValue,
-        }));
-        let suggestions = [];
-        const searchValue = e.target.value;
-        console.log(searchValue);
-        const response= await fetch(`http://localhost:3001/tmdb/findMovie?searchValue=${searchValue}`);
-        const result= await response.json();
-        console.log('the result', result)
-        if (result.results){
-            result.results.forEach((movie)=>{
-                if (suggestions.length<6){
-                     suggestions.push(movie.title)
-                }
-           
-        }) 
-        }
-        
-
         this.setState(() => ({
             suggestions
         }));
-  
-        
+        let suggestions = [];
+
+        const searchValue = e.target.value;
+
+        try {
+            const response = await fetch(serverURL+"/tmdb/getMovies?searchValue="+searchValue, {
+                method: "GET",
+            });
+            const result = await response.json();
+    
+            if (result.results) {
+                
+                result.results.forEach((movie) => {
+                    if (suggestions.length < 6) {
+                        suggestions.push(movie.original_title);
+                    }
+                });
+            }
+    
+            this.setState(() => ({
+                suggestions,
+            }));
+            
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     selectedText(value) {
