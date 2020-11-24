@@ -1,24 +1,63 @@
+
+a {
+  text-decoration: none;
+  color: black;
+}
+/* Class */
 .App {
   text-align: center;
 }
 
+.navBar {
+  width: 100%;
+  background-color: rgb(163, 149, 149);
+  color: rgb(15, 15, 15);
+  padding: 10px;
+  font-weight: bold;
+}
 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.MovList{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  font-size: 0.5em;
+  margin-top: 250px;  
 }
 
-.App-link {
-  color: #61dafb;
+.MovItem{
+  /* padding: 0 20px; */
+  display: inline;
+  text-align: center;
+  margin-left: 50px;
+  padding-left: 50px;
+  /* align-content: center; */
+}
+.image{
+  padding-left: 50px;
 }
 
+.container { 
+  height: 60px;
+  position: relative;
+  /* border: 3px solid green;  */
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 0 5px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
 @media screen and (min-width:600px) {
   
   #notebooks {
@@ -29,6 +68,7 @@
     width: 450px;
   }
 }
+
 li {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.05);
@@ -41,6 +81,18 @@ li {
     cursor: pointer;
     border-radius: 3px;
 }
+
+ul {
+  margin: 0 auto;
+  padding: 0;
+  max-height: 390px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 5px 0 5px;
+  border-left: none;
+  border-right: none;
+}
+
 .red {
   color:red;
 }
@@ -70,6 +122,28 @@ li {
     box-shadow: inset 1px 1px 0 white;
     max-height: 450px;
 }
+
+#notebooks span {
+    display: block;
+    position: absolute;
+    background: #FFD32E;
+    bottom: -35px;
+    left: -1px;
+    width: 460px;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+#BoxStyle {
+  position: relative;
+  /* top: 300px; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
 
 ul {
     margin: 0 auto;
