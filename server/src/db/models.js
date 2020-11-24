@@ -46,11 +46,6 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-userSchema.virtual("warnings", {
-    ref: "Warning",
-    localField: "_id",
-    foreignField: "userID",
-});
 const movieSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -110,34 +105,34 @@ const warningSchema = new mongoose.Schema(
     {
         timestamps: true,
     }
-);
-const Warning = mongoose.model("Warning", warningSchema);
-
-const categorySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-});
-const Category = mongoose.model("Category", categorySchema);
-const frequencySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-});
-const Frequency = mongoose.model("Type", frequencySchema);
-const severitySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-});
-const Severity = mongoose.model("Severity", severitySchema);
-const typeSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
+    );
+    const Warning = mongoose.model("Warning", warningSchema);
+    
+    const categorySchema = new mongoose.Schema({
+        title: {
+            type: String,
+            required: true,
+        },
+    });
+    const Category = mongoose.model("Category", categorySchema);
+    const frequencySchema = new mongoose.Schema({
+        title: {
+            type: String,
+            required: true,
+        },
+    });
+    const Frequency = mongoose.model("Frequency", frequencySchema);
+    const severitySchema = new mongoose.Schema({
+        title: {
+            type: String,
+            required: true,
+        },
+    });
+    const Severity = mongoose.model("Severity", severitySchema);
+    const typeSchema = new mongoose.Schema({
+        title: {
+            type: String,
+            required: true,
     },
 });
 const Type = mongoose.model("Type", typeSchema);
@@ -162,4 +157,9 @@ severitySchema.virtual("warnings", {
     foreignField: "severityID",
 });
 
+userSchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "userID",
+});
 module.exports = { User, Movie, Warning, Category, Frequency, Type, Severity };

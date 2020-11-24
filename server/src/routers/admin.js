@@ -1,9 +1,12 @@
 const express = require("express");
-const auth = require("../middleware/auth");
 const { Category, User} = require("../db/models")
 const router = new express.Router();
 
-router.post("/addCategory", auth, async (req, res) => {
+router.get("/getUsers", async (req, res) => {
+    console.log('hey');
+    res.send('hey')
+});
+router.post("/addCategory", async (req, res) => {
     const category = new Category({
         ...req.body,
     });
@@ -16,7 +19,7 @@ router.post("/addCategory", auth, async (req, res) => {
     }
 });
 
-router.post('/removeUser', auth, async (req, res) => {
+router.post('/removeUser', async (req, res) => {
     const userID  = req.body
     const deleted = await User.findOneAndDelete({ _id: userID })
     res.send(deleted);

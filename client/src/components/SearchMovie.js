@@ -1,7 +1,8 @@
 import React from "react";
-import { apiKey } from "./api-key";
 import "../css/App.css";
 
+
+const serverURL = 'http://localhost:9000'
 export default class SearchMovie extends React.Component {
     constructor(props) {
         super(props);
@@ -10,33 +11,37 @@ export default class SearchMovie extends React.Component {
             text: "",
         };
     }
-
-    onTextChange = (e) => {
-        let suggestions = [];
-        const searchValue = e.target.value;
-        let searchURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchValue}&page=1&include_adult=false`;
-        const req = new Request(searchURL, {
-            method: "GET",
-        });
-        fetch(req)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.results) {
-                    data.results.forEach((movie) => {
-                        if (suggestions.length < 6) {
-                            suggestions.push(movie.original_title);
-                        }
-                    });
-                }
-            })
-            .then(() => {
-                this.setState(() => ({
-                    suggestions
-                }));
-            });
+    
+    onTextChange = async (e) => {
         this.setState(() => ({
             text: searchValue,
         }));
+        let suggestions = [];
+
+        const searchValue = e.target.value;
+
+        try {
+            const response = await fetch(serverURL+"/tmdb/getMovies?searchValue="+searchValue, {
+                method: "GET",
+            });
+            const result = await response.json();
+    
+            if (result.results) {
+                
+                result.results.forEach((movie) => {
+                    if (suggestions.length < 6) {
+                        suggestions.push(movie.original_title);
+                    }
+                });
+            }
+    
+            this.setState(() => ({
+                suggestions,
+            }));
+            
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     selectedText(value) {
