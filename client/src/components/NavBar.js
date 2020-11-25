@@ -21,9 +21,10 @@ export default class NavBar extends Component {
           </button> */}
 
           <Box display="flex" p={1} bgcolor="background.paper">
-            <Box p={1} flexGrow={1} bgcolor="grey.300">
+            <Box p={1} bgcolor="grey.300">
               <Link to='/' > Home</Link>
-            </Box>
+                    </Box>
+                    <Box textAlign={'center'} flexGrow={1} p={1}>The Movie Warning Database</Box>
             <Box p={1} bgcolor="grey.300">
               {/* <Link to='/SignIn'> Sign in</Link> */}
             </Box>

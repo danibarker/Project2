@@ -16,7 +16,7 @@ export default class App extends Component {
 
     const Home = () => (
       <div className="App">
-        <h1>THE MOVIE WARNING DATABASE</h1>
+        
         <SearchBar />
         <Movielist/>
 

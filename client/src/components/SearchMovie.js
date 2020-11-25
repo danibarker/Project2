@@ -1,65 +1,48 @@
 import React from "react";
 import "../css/App.css";
-
+import  { useState, useEffect } from 'react';
 
 const serverURL = 'http://localhost:9000'
-export default class SearchMovie extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            suggestions: [],
-            text: "",
-        };
-    }
+
+
+
+export default function SearchMovie() {
     
-    onTextChange = async (e) => {
-        this.setState(() => ({
-            suggestions
-        }));
-        let suggestions = [];
+    const [results, setResults] = useState([]);
 
-        const searchValue = e.target.value;
-
+    async function getResults(text) {
+        let suggestions = []
         try {
-            const response = await fetch(serverURL+"/tmdb/getMovies?searchValue="+searchValue, {
+            const response = await fetch(serverURL + "/tmdb/findMovie?searchValue=" + text, {
                 method: "GET",
             });
             const result = await response.json();
-    
+
             if (result.results) {
-                
+
                 result.results.forEach((movie) => {
                     if (suggestions.length < 6) {
                         suggestions.push(movie.original_title);
                     }
                 });
             }
-    
-            this.setState(() => ({
-                suggestions,
-            }));
-            
+
+            setResults(suggestions);
+
         } catch (e) {
             console.log(e);
         }
-    };
-
-    selectedText(value) {
-        this.setState(() => ({
-            text: value,
-            suggestions: [],
-        }));
     }
 
-    renderSuggestions = () => {
-        let { suggestions } = this.state;
+    function renderResults() {
+        let suggestions = results;
         if (suggestions.length === 0) {
             return null;
         }
         return (
             <ul>
                 {suggestions.map((item, index) => (
-                    <li key={index} onClick={() => this.selectedText(item)}>
+                    <li key={index} onClick={() => console.log('test')}>
                         {item}
                     </li>
                 ))}
@@ -67,21 +50,18 @@ export default class SearchMovie extends React.Component {
         );
     };
 
-    render() {
-        const { text, suggestions } = this.state;
-        return (
-            <div id="notebooks">
-                <h2>The warning movie database</h2>
-                <h3>Search the movie content</h3>
-                <input
-                    id="query"
-                    type="text"
-                    onChange={this.onTextChange}
-                    value={text}
-                />
-                {this.renderSuggestions()}
-                <span>Results: {suggestions.length}</span>
-            </div>
-        );
-    }
+
+
+    return (
+        <div id="notebooks">
+            
+            <input
+                id="query"
+                type="text"
+                onChange={(event) => { getResults(event.target.value) }}
+                placeholder="Search"
+            />
+            {results.map((movie) => (<div>{movie}<hr /></div>))}
+        </div>
+    );
 }
