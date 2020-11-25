@@ -20,7 +20,7 @@ a {
 
 
 .MovList{
-    margin-top: 100px;
+    margin-top: 120px;
   display: flex;
   flex-wrap: wrap;
   font-size: 0.5em; 
@@ -104,8 +104,8 @@ ul {
 #notebooks {
     z-index: 1;
     position: absolute;
-    width: 100%;
-    
+    width: 90%;
+    margin: 30px 0 30px 5%;
     background: whitesmoke;
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
