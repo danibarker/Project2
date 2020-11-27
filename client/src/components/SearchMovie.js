@@ -1,13 +1,13 @@
 import React from "react";
 import "../css/App.css";
-import  { useState, useEffect } from 'react';
+import  { useState } from 'react';
 
 const serverURL = 'http://localhost:9000'
 
 
 
-export default function SearchMovie() {
-    
+export default function SearchMovie({ setMovie }) {
+    console.log(setMovie)
     const [results, setResults] = useState([]);
 
     async function getResults(text) {
@@ -33,25 +33,6 @@ export default function SearchMovie() {
             console.log(e);
         }
     }
-
-    function renderResults() {
-        let suggestions = results;
-        if (suggestions.length === 0) {
-            return null;
-        }
-        return (
-            <ul>
-                {suggestions.map((item, index) => (
-                    <li key={index} onClick={() => console.log('test')}>
-                        {item}
-                    </li>
-                ))}
-            </ul>
-        );
-    };
-
-
-
     return (
         <div id="notebooks">
             
@@ -61,7 +42,7 @@ export default function SearchMovie() {
                 onChange={(event) => { getResults(event.target.value) }}
                 placeholder="Search"
             />
-            {results.map((movie) => (<div>{movie}<hr /></div>))}
+            {results.map((movie) => (<li onClick={()=>setMovie(movie)}>{movie}</li>))}
         </div>
     );
 }
