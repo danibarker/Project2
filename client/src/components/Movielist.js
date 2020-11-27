@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 
 //import { useState } from 'react';
 
-function MovieList() {
+function MovieList({setMovie}) {
   useEffect(() => {
     fetchItems();
   }, []);
@@ -32,13 +32,14 @@ function MovieList() {
           <div className="container">
             <div className="vertical-center">
               <h1  key={results.title}>
-                <Link to={`/${results.id}`}>{results.title}</Link>
+                  <div onClick={() => setMovie(results.title)}>{results.title}</div>
               </h1>
             </div>
           </div>
-          <img
+            <img
+              onClick={() => setMovie(results.title)}
             src={
-              " https://image.tmdb.org/t/p/w600_and_h900_bestv2" +
+              " https://image.tmdb.org/t/p/w220_and_h330_face" +
               results.poster_path
             }
             alt="no "
