@@ -1,5 +1,5 @@
 const express = require("express");
-const { Category, User} = require("../db/models")
+const { Category, User} = require("../models/models")
 const router = new express.Router();
 const fetch = require("node-fetch");
 const {apiKey} = require("./api-key");

@@ -1,4 +1,4 @@
-const Category = require('../models/category');
+const { Category } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
@@ -17,7 +17,7 @@ exports.category_list = async function(req, res) {
 
 // Display detail page for ONE category.
 exports.category_detail = async function(req, res) {
-  const cat = req.params.category;
+  const cat = req.body.category;
   debug(`Find single category: ${cat}`);
   // an object is returned
   const response = await Category.findOne( { category: cat });
@@ -36,7 +36,7 @@ exports.category_create_post = async function(req, res) {
   const newCategory = req.body.category;
   debug(`newCategory : ${newCategory}`);
   const newRecord = {
-    "category": newCategory
+    "title": newCategory
   }
   debug(`newRecord: ${newRecord}`);
   

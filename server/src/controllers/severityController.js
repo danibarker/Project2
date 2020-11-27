@@ -1,4 +1,4 @@
-const Severity = require('../models/severity');
+const { Severity } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
@@ -36,7 +36,7 @@ exports.severity_create_post = async function(req, res) {
   const newSeverity = req.body.severity;
   debug(`newSeverity : ${newSeverity}`);
   const newRecord = {
-    "severity": newSeverity
+    "title": newSeverity
   }
   debug(`newRecord: ${newRecord}`);
   

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+
+// ****************************************
+// USER
+//
 const userSchema = new mongoose.Schema(
     {
         username: {
@@ -46,6 +50,17 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
+
+userSchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "userID",
+});
+
+
+// ****************************************
+// MOVIE
+//
 const movieSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -66,6 +81,10 @@ movieSchema.virtual("warnings", {
     foreignField: "movieID",
 });
 
+
+// ****************************************
+// WARNING
+//
 const warningSchema = new mongoose.Schema(
     {
         userID: {
@@ -108,70 +127,81 @@ const warningSchema = new mongoose.Schema(
 );
 const Warning = mongoose.model("Warning", warningSchema);
 
+
+// ****************************************
+// CATEGORY - added unique
+//
 const categorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true
     },
 });
 const Category = mongoose.model("Category", categorySchema);
-const frequencySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Frequency = mongoose.model("Frequency", frequencySchema);
-const severitySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Severity = mongoose.model("Severity", severitySchema);
-const typeSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Type = mongoose.model("Type", typeSchema);
+
 categorySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "categoryID",
 });
+
+
+// ****************************************
+// FREQUENCY - added unique
+//
+const frequencySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
+});
+const Frequency = mongoose.model("Frequency", frequencySchema);
+
 frequencySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "frequencyID",
 });
-typeSchema.virtual("warnings", {
-    ref: "Warning",
-    localField: "_id",
-    foreignField: "typeID",
+
+
+// ****************************************
+// SEVERITY - added unique
+//
+const severitySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
 });
+const Severity = mongoose.model("Severity", severitySchema);
+
 severitySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "severityID",
 });
 
-userSchema.virtual("warnings", {
+
+// ****************************************
+// TYPE - added unique
+//
+const typeSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
+});
+const Type = mongoose.model("Type", typeSchema);
+
+typeSchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
-    foreignField: "userID",
+    foreignField: "typeID",
 });
+
+
 module.exports = { User, Movie, Warning, Category, Frequency, Type, Severity };

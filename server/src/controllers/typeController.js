@@ -1,4 +1,4 @@
-const Type = require('../models/type');
+const { Type } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
@@ -36,7 +36,7 @@ exports.type_create_post = async function(req, res) {
   const newType = req.body.type
   debug(`newType ${newType}`)
   const newRecord = {
-    "type": newType
+    "title": newType
   }
   debug(`newRecord: ${newRecord}`);
   
