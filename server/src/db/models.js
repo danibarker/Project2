@@ -105,35 +105,47 @@ const warningSchema = new mongoose.Schema(
     {
         timestamps: true,
     }
-    );
-    const Warning = mongoose.model("Warning", warningSchema);
-    
-    const categorySchema = new mongoose.Schema({
-        title: {
-            type: String,
-            required: true,
-        },
-    });
-    const Category = mongoose.model("Category", categorySchema);
-    const frequencySchema = new mongoose.Schema({
-        title: {
-            type: String,
-            required: true,
-        },
-    });
-    const Frequency = mongoose.model("Frequency", frequencySchema);
-    const severitySchema = new mongoose.Schema({
-        title: {
-            type: String,
-            required: true,
-        },
-    });
-    const Severity = mongoose.model("Severity", severitySchema);
-    const typeSchema = new mongoose.Schema({
-        title: {
-            type: String,
-            required: true,
+);
+const Warning = mongoose.model("Warning", warningSchema);
+
+const categorySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
     },
+});
+const Category = mongoose.model("Category", categorySchema);
+const frequencySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+    value: {
+        type: Number,
+        required: true,
+    }
+});
+const Frequency = mongoose.model("Frequency", frequencySchema);
+const severitySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+    value: {
+        type: Number,
+        required: true,
+    }
+});
+const Severity = mongoose.model("Severity", severitySchema);
+const typeSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: Number,
+        required: true,
+    }
 });
 const Type = mongoose.model("Type", typeSchema);
 categorySchema.virtual("warnings", {
