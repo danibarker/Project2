@@ -36,7 +36,7 @@ exports.category_create_post = async function(req, res) {
   const newCategory = req.body.category;
   debug(`newCategory : ${newCategory}`);
   const newRecord = {
-    "category": newCategory
+    "title": newCategory
   }
   debug(`newRecord: ${newRecord}`);
   
