@@ -1,4 +1,4 @@
-const { Severity } = require('../models/models');
+const { Severity } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 

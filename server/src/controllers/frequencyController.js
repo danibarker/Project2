@@ -1,4 +1,4 @@
-const { Frequency } = require('../models/models');
+const { Frequency } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 

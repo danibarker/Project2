@@ -1,4 +1,4 @@
-const { Category } = require('../models/models');
+const { Category } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 

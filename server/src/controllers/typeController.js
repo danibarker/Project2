@@ -1,4 +1,4 @@
-const { Type } = require('../models/models');
+const { Type } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
