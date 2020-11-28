@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { Box } from "@material-ui/core";
-let live = false
-live = true  //uncomment this line when running npm run build
-const serverURL = live ? '' : 'http://localhost:3000'
+
 
 function MovieList({ setMovie }) {
     useEffect(() => {
@@ -14,7 +12,7 @@ function MovieList({ setMovie }) {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch(serverURL+"/tmdb/popularMovies");
+        const data = await fetch("/tmdb/popularMovies");
               console.log(data)
 
       const items = await data.json();

@@ -1,9 +1,7 @@
 import React from "react";
 import "../css/App.css";
 import  { useState } from 'react';
-let live = false
-live = true  //uncomment this line when running npm run build
-const serverURL = live ? '' : 'http://localhost:3000'
+
 
 
 
@@ -14,7 +12,7 @@ export default function SearchMovie({ setMovie }) {
     async function getResults(text) {
         let suggestions = []
         try {
-            const response = await fetch(serverURL + "/tmdb/findMovie?searchValue=" + text, {
+            const response = await fetch("/tmdb/findMovie?searchValue=" + text, {
                 method: "GET",
             });
             const result = await response.json();

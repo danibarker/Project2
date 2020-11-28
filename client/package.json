@@ -15,7 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "rmdir /s /q ..\\src\\public",
     "build": "react-scripts build",
+    "postbuild": "move build ../src/public && nodemon ../src/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
