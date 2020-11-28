@@ -1,8 +1,9 @@
 import React from "react";
 import "../css/App.css";
 import  { useState } from 'react';
-
-const serverURL = process.env.DATABASE_URL ? '' : 'http://localhost:3000'
+let live = false
+live = true  //uncomment this line when running npm run build
+const serverURL = live ? '' : 'http://localhost:3000'
 
 
 

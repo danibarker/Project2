@@ -1,9 +1,11 @@
 const express = require("express");
 const router = new express.Router();
 const fetch = require("node-fetch");
-const { apiKey } = { apiKey: process.env.TMDB_API_KEY } || require("./api-key");
+
+const { apiKey } = process.env.TMDB_API_KEY ? { apiKey: process.env.TMDB_API_KEY } : require("./api-key");
 
 router.get("/popularMovies", async (req, res) => {
+    console.log(apiKey)
     const response = await fetch(
         `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
     );
