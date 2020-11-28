@@ -2,7 +2,7 @@ import React from "react";
 import "../css/App.css";
 import  { useState } from 'react';
 
-const serverURL = 'http://localhost:9000'
+const serverURL = process.env.PORT ? '' : 'http://localhost:3000'
 
 
 
