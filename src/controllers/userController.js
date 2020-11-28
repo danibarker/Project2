@@ -1,4 +1,4 @@
-const { User } = require('../models/models');
+const { User } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
