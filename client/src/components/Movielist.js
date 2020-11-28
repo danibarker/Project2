@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { Box } from "@material-ui/core";
-const serverURL = process.env.PORT ? "" : "http://localhost:3000";
-//import { useState } from 'react';
 
 function MovieList({ setMovie }) {
     useEffect(() => {
