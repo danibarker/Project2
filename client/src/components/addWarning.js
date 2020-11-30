@@ -3,6 +3,9 @@ import "../css/App.css";
 function sendData(warning) {
     console.log(warning)
 }
+function Chart() {
+    return (<div>This is a chart</div>)
+}
 export default function AddWarning() {
     const [warning, setWarning] = useState([]);
     const [category, setCategory] = useState("Violence");
@@ -11,6 +14,7 @@ export default function AddWarning() {
     const [severity, setSeverity] = useState("Moderate");
     return (
         <div>
+            <Chart />
             <select
                 onChange={(event) => {
                     return setCategory(event.target.value);

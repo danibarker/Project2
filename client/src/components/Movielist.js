@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { Box } from "@material-ui/core";
+import { getPopular } from "../requests/gets";
 
 
 function MovieList({ setMovie }) {
@@ -12,13 +13,8 @@ function MovieList({ setMovie }) {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch("/tmdb/popularMovies");
-              console.log(data)
-
-      const items = await data.json();
-      console.log(items)
-        console.log(items.results);
-        setItems(items.results);
+        let popularMovies = await getPopular()
+        setItems(popularMovies);
     };
     return (
         <Box flexWrap="wrap" display="flex">
