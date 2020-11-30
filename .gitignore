@@ -2,8 +2,10 @@ node_modules
 secrets.js
 api-key.js
 build
-**/public/
 test.*
 databasef*.*
 .DS_Store
 apiKey.js
+/.vs/slnx.sqlite
+/.vs/Project2/v16
+/.vs

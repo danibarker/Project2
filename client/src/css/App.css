@@ -1,4 +1,6 @@
-
+* {
+    box-sizing: border-box;
+}
 a {
   text-decoration: none;
   color: black;
@@ -9,7 +11,7 @@ a {
 }
 
 .navBar {
-  width: 100%;
+/*  width: 100%;*/
   background-color: rgb(163, 149, 149);
   color: rgb(15, 15, 15);
   padding: 10px;
@@ -18,10 +20,10 @@ a {
 
 
 .MovList{
+    margin-top: 120px;
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.5em;
-  margin-top: 250px;  
+  font-size: 0.5em; 
 }
 
 .MovItem{
@@ -53,16 +55,6 @@ a {
 
 
 
-@media screen and (min-width:600px) {
-  
-  #notebooks {
-    position: absolute; 
-    left: 50%; 
-    margin-left: -250px; 
-    margin-top: 35px;
-    width: 450px;
-  }
-}
 
 li {
     list-style: none;
@@ -110,6 +102,10 @@ ul {
 }
 
 #notebooks {
+    z-index: 1;
+    position: absolute;
+    width: 90%;
+    margin: 30px 0 30px 5%;
     background: whitesmoke;
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -118,18 +114,36 @@ ul {
     max-height: 450px;
 }
 
+.warningPageContainer {
+  z-index: 1;
+    position: fixed;
+    width: 90%;
+    margin: 30px 0 30px 5%;
+    background: whitesmoke;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    overflow-y: auto;
+    height: 60%;
+}
+::-webkit-scrollbar {
+  width: 100px;
+}
+::-webkit-scrollbar-button {
+  color: blue;
+}
+
+.warningPageContainer-Bottom {
+  bottom: 0;
+  height: 15%;
+
+}
+
 #notebooks span {
-    display: block;
-    position: absolute;
-    background: #FFD32E;
-    bottom: -35px;
-    left: -1px;
-    width: 460px;
-    border-radius: 0 0 5px 5px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    
     padding: 10px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: inset 1px 1px rgba(255, 255, 255, 0.5);
+    
 }
 
 #BoxStyle {
@@ -150,4 +164,16 @@ ul {
     padding: 5px 5px 0 5px;
     border-left: none;
     border-right: none;
+}
+
+.warningList {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: center;
+}
+
+.warningListItem {
+  width: 200px;
+  margin: 10px;
 }
