@@ -3,6 +3,7 @@ import "../css/App.css";
 function sendData(warning) {
     console.log(warning)
 }
+let warning = [{category:5, frequency: 3, type: 2, severity:4}, {category:5, frequency: 3, type: 2, severity:4}, {category:5, frequency: 3, type: 2, severity:4}]
 export default function AddWarning() {
     const [warning, setWarning] = useState([]);
     const [category, setCategory] = useState("Violence");
@@ -66,26 +67,45 @@ export default function AddWarning() {
                 <option>Mild</option>
                 <option>Severe</option>
             </select>
+            <label htmlFor="commentBox">Write your comments and press submit</label>
+            <textarea id="commentBox"
+               rows="10"
+               cols="80"
+     
+             />
 
 
 
             <button
                 onClick={() =>
                     setWarning(
-                        warning.concat([{ category:category,   frequency: frequency,  type: type,   severity: severity }])
+                        warning.concat([{ category: category,   frequency: frequency,  type: type,   severity: severity }])
+                        
                     )
                 }
             >
+                
                 Click
             </button>
+
+
+
             <br />
             <br />
             <div>
+                <table>
                 {warning.length > 0
                     ? warning.map((item) => (
-                          <div key={warning.indexOf(item)}>{Object.values(item) + ""}</div>
+
+                          <tr><td key={warning.indexOf(item)}>{item.category}</td>
+                                <td key={warning.indexOf(item)}>{item.frequency}</td>
+                                <td key={warning.indexOf(item)}>{item.type}</td>
+                                <td key={warning.indexOf(item)}>{item.severity}</td>
+                          </tr>
+                        
                       ))
                     : ""}
+                    </table>
             </div>
             <button onClick={()=>sendData(warning)}>Send Data</button>
         </div>
