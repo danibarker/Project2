@@ -1,19 +1,10 @@
 import React from "react";
 import "../css/App.css";
-async function getWarnings(movieID) {
-    try {
-        const response = await fetch("/warnings/movieID=" + movieID, {
-            method: "GET",
-        });
-        const result = await response.json();
+import { getAllResource } from "../requests/gets";
 
-        return result;
-    } catch (e) {
-        console.log(e);
-    }
-}
 export default function ViewMovieInfo({ movieID }) {
     //const movieWarnings = getWarnings(movieID)
+    
     const movieTitle = movieID;
     const movieWarnings = [
         {
@@ -107,6 +98,7 @@ export default function ViewMovieInfo({ movieID }) {
             </li>
         );
     });
+    
     return (
         <>
             <div className="warningPageContainer">

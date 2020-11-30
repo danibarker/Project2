@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "../css/App.css";
 function sendData(warning) {
-    console.log(warning)
+    console.log(warning);
 }
+// Example of an adding warning using different categories
+let warnings = [
+    { category: "Violence", frequency: "Common", type: "Implied", severity: "Moderate" },
+    { category: "Nudity", frequency: "Single", type: "Suggested", severity: "Mild" },
+    { category: "Blood", frequency: "Sporadic", type: "Underlying", severity: "Severe" },
+];
 export default function AddWarning() {
     const [warning, setWarning] = useState([]);
     const [category, setCategory] = useState("Violence");
@@ -11,6 +17,8 @@ export default function AddWarning() {
     const [severity, setSeverity] = useState("Moderate");
     return (
         <div>
+            <br></br>
+            <div className="ptther">
             <select
                 onChange={(event) => {
                     return setCategory(event.target.value);
@@ -54,7 +62,6 @@ export default function AddWarning() {
                 <option>Implied</option>
                 <option>Suggested</option>
                 <option>Underlying</option>
-
             </select>
 
             <select
@@ -66,28 +73,71 @@ export default function AddWarning() {
                 <option>Mild</option>
                 <option>Severe</option>
             </select>
-
-
+            {/* <label htmlFor="commentBox">Details:</label>
+            <textarea id="commentBox" rows="10" cols="80" /> */}
+            <br></br>
 
             <button
                 onClick={() =>
                     setWarning(
-                        warning.concat([{ category:category,   frequency: frequency,  type: type,   severity: severity }])
+                        warnings.concat([
+                            {
+                                category: category,
+                                frequency: frequency,
+                                type: type,
+                                severity: severity,
+                            },
+                        ])
                     )
                 }
             >
+                
                 Click
             </button>
-            <br />
-            <br />
-            <div>
-                {warning.length > 0
-                    ? warning.map((item) => (
-                          <div key={warning.indexOf(item)}>{Object.values(item) + ""}</div>
-                      ))
-                    : ""}
             </div>
-            <button onClick={()=>sendData(warning)}>Send Data</button>
+
+            <br />
+            <br />
+            <div className="tomove">
+                
+                <table class="center" border="2">
+                    <tr>
+                        <th>Category</th>
+                        <th>Frequency</th>
+                        <th>Type</th>
+                        <th>Severity</th>
+                    </tr>
+                    {warnings.length > 0
+                        ? warnings.map((item) => (
+                              <tr>
+                                  <td key={warnings.indexOf(item)}>
+                                      {item.category}
+                                  </td>
+                                  <td key={warnings.indexOf(item)}>
+                                      {item.frequency}
+                                  </td>
+                                  <td key={warnings.indexOf(item)}>
+                                      {item.type}
+                                  </td>
+                                  <td key={warnings.indexOf(item)}>
+                                      {item.severity}
+                                  </td>
+                              </tr>
+                          ))
+                        : ""}
+                </table>
+                
+                <br></br>
+                <br></br>
+              
+              
+                <label htmlFor="commentBox">Comments:</label>
+                </div>
+
+            <div className="part">
+                <textarea id="commentBox" rows="10" cols="80" />
+                <button onClick={() => sendData(warning)}>Send Data</button>
+            </div>
         </div>
     );
 }

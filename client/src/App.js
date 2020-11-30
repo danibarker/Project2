@@ -9,30 +9,44 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Movielist from "./components/Movielist";
 import MovieDetail from "./components/MovieDetail";
 import ViewMovieInfo from "./components/viewMovieInfo";
+import { getAllResource } from "./requests/gets";
+import AddWarning from "./components/addWarning";
 
 export default function App() {
+    let [currentPage, setCurrentPage] = useState('Homepage')
     let [selectedMovie, setSelectedMovie] = useState("");
-
+    let [AdminPage, setAdminPage] = useState(false);
+    let [resourceList, setResourceList]= useState([])
     const Home = () => {
         console.log(selectedMovie.length);
-        if (!selectedMovie) {
-            return (
-                <div className="App">
-                    <SearchBar setMovie={setSelectedMovie} />
+        
+        if (AdminPage) {
+            
+            if (!selectedMovie) {
+                return (
+                    <div className="App">
+                        <SearchBar setMovie={setSelectedMovie} />
 
-                    <Movielist setMovie={setSelectedMovie} />
-                </div>
-            );
+                        <Movielist setMovie={setSelectedMovie} />
+                    </div>
+                );
+            } else {
+                return (
+                    <div>
+                        <SearchBar setMovie={setSelectedMovie} />
+                        <ViewMovieInfo movieID={selectedMovie} />
+                        <button onClick={() => setSelectedMovie("")}>
+                            Go back to search
+                        </button>
+                    </div>
+                );
+            }
         } else {
-            return (
-                <div>
-                    <SearchBar setMovie={setSelectedMovie} />
-                    <ViewMovieInfo movieID={selectedMovie} />
-                    <button onClick={() => setSelectedMovie("")}>
-                        Go back to search
-                    </button>
-                </div>
-            );
+            return <AddWarning />
+            // return (<><input id="hello" /><button onClick={async () => {
+            //     let resources = await getAllResource(document.getElementById('hello').value)
+            //     setResourceList(resources)
+            // }}>Get Stuff</button><br />{resourceList.map((resource) => <div>{JSON.stringify(resource)}</div>)}</>);
         }
     };
     return (

@@ -1,4 +1,4 @@
-const { Movie } = require('../models/models');
+const { Movie } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 exports.index = function(req, res) {

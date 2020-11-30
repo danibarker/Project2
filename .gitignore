@@ -2,7 +2,6 @@ node_modules
 secrets.js
 api-key.js
 build
-**/public/
 test.*
 databasef*.*
 .DS_Store
