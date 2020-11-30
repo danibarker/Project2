@@ -10,6 +10,7 @@ import Movielist from "./components/Movielist";
 import MovieDetail from "./components/MovieDetail";
 import ViewMovieInfo from "./components/viewMovieInfo";
 import { getAllResource } from "./requests/gets";
+import AddWarning from "./components/addWarning";
 
 export default function App() {
     let [currentPage, setCurrentPage] = useState('Homepage')
@@ -20,6 +21,7 @@ export default function App() {
         console.log(selectedMovie.length);
         
         if (AdminPage) {
+            
             if (!selectedMovie) {
                 return (
                     <div className="App">
@@ -40,10 +42,11 @@ export default function App() {
                 );
             }
         } else {
-            return (<><input id="hello" /><button onClick={async () => {
-                let resources = await getAllResource(document.getElementById('hello').value)
-                setResourceList(resources)
-            }}>Get Stuff</button><br />{resourceList.map((resource) => <div>{JSON.stringify(resource)}</div>)}</>);
+            return <AddWarning />
+            // return (<><input id="hello" /><button onClick={async () => {
+            //     let resources = await getAllResource(document.getElementById('hello').value)
+            //     setResourceList(resources)
+            // }}>Get Stuff</button><br />{resourceList.map((resource) => <div>{JSON.stringify(resource)}</div>)}</>);
         }
     };
     return (
