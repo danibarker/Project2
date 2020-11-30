@@ -9,7 +9,18 @@ a {
 .App {
   text-align: center;
 }
+.ptther {
+  display: flex;
+  margin-left:10px;
 
+}
+.part {
+  display:block;
+  margin-left:10px;
+}
+.tomove { 
+ margin-left:10px;
+}
 .navBar {
 /*  width: 100%;*/
   background-color: rgb(163, 149, 149);

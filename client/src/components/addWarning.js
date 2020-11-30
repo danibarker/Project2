@@ -3,10 +3,11 @@ import "../css/App.css";
 function sendData(warning) {
     console.log(warning);
 }
+// Example of an adding warning using different categories
 let warnings = [
-    { category: 5, frequency: 3, type: 2, severity: 4 },
-    { category: 5, frequency: 3, type: 2, severity: 4 },
-    { category: 5, frequency: 3, type: 2, severity: 4 },
+    { category: "Violence", frequency: "Common", type: "Implied", severity: "Moderate" },
+    { category: "Nudity", frequency: "Single", type: "Suggested", severity: "Mild" },
+    { category: "Blood", frequency: "Sporadic", type: "Underlying", severity: "Severe" },
 ];
 export default function AddWarning() {
     const [warning, setWarning] = useState([]);
@@ -16,6 +17,8 @@ export default function AddWarning() {
     const [severity, setSeverity] = useState("Moderate");
     return (
         <div>
+            <br></br>
+            <div className="ptther">
             <select
                 onChange={(event) => {
                     return setCategory(event.target.value);
@@ -70,8 +73,9 @@ export default function AddWarning() {
                 <option>Mild</option>
                 <option>Severe</option>
             </select>
-            <label htmlFor="commentBox">Details:</label>
-            <textarea id="commentBox" rows="10" cols="80" />
+            {/* <label htmlFor="commentBox">Details:</label>
+            <textarea id="commentBox" rows="10" cols="80" /> */}
+            <br></br>
 
             <button
                 onClick={() =>
@@ -87,13 +91,16 @@ export default function AddWarning() {
                     )
                 }
             >
+                
                 Click
             </button>
+            </div>
 
             <br />
             <br />
-            <div>
-                <table border="1">
+            <div className="tomove">
+                
+                <table class="center" border="2">
                     <tr>
                         <th>Category</th>
                         <th>Frequency</th>
@@ -119,8 +126,18 @@ export default function AddWarning() {
                           ))
                         : ""}
                 </table>
+                
+                <br></br>
+                <br></br>
+              
+              
+                <label htmlFor="commentBox">Comments:</label>
+                </div>
+
+            <div className="part">
+                <textarea id="commentBox" rows="10" cols="80" />
+                <button onClick={() => sendData(warning)}>Send Data</button>
             </div>
-            <button onClick={() => sendData(warning)}>Send Data</button>
         </div>
     );
 }
