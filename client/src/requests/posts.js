@@ -1,7 +1,7 @@
 const serverURL = "http://localhost:3000";
 
 export default function CreateNewWarning(){
-    for (warning of warnings) {        
+    for (let warning of warnings) {        
         fetch(serverURL + '/api/warning/create', {                            
             method: 'post',
             headers: {"Content-Type": "application/json"},   
