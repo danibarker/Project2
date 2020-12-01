@@ -136,7 +136,8 @@ export default function AddWarning() {
 
             <div className="part">
                 <textarea id="commentBox" rows="10" cols="80" />
-                <button onClick={() => sendData(warning)}>Send Data</button>
+                {/* <button onClick={() => sendData(warning)}>Send Data</button> */}
+                <button onClick={CreateNewWarning}>Send Data</button>
             </div>
         </div>
     );
