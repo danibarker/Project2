@@ -1,16 +1,16 @@
 const serverURL = "http://localhost:3000";
 
-export default function CreateNewWarning(){
+export function createNewWarning(){
     for (let warning of warnings) {        
         fetch(serverURL + '/api/warning/create', {                            
             method: 'post',
             headers: {"Content-Type": "application/json"},   
-            body: JSON.stringify({warning:{userID:warning.user,movieID:warning.movie, categoryID:warning.category, frequencyID:warning.frequency, typeID:warning.type,severityID:warning.severity}})                    
+            body: JSON.stringify({warning:{userID:warning.userID,movieID:warning.movieID, categoryID:warning.categoryID, frequencyID:warning.frequencyID, typeID:warning.typeID,severityID:warning.severityID}})                    
         })
     }
 }
 
-export default function AddResource(type,newResource){
+export function addResource(type,newResource){
     fetch(serverURL + `/api/${type}/create`, {                            
         method: 'post',
         headers: {"Content-Type": "application/json"},   
@@ -18,7 +18,7 @@ export default function AddResource(type,newResource){
     })
 }
 
-export default function AddUserLogin(newUsername,newEmail,newPassword){
+export function addUser(newUsername,newEmail,newPassword){
     fetch(serverURL + '/api/user/create', {                            
         method: 'post',
         headers: {"Content-Type": "application/json"},   
@@ -26,7 +26,7 @@ export default function AddUserLogin(newUsername,newEmail,newPassword){
     })
 }
 
-export default function AddMovie(tmdbId, movieName) {
+export function addMovie(tmdbId, movieName) {
   fetch(serverURL + '/api/movie/create', {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
