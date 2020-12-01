@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/App.css";
-import { getAllResource } from "../requests/gets";
+// import { getAllResource } from "../requests/gets";
 
 export default function ViewMovieInfo({ movieID }) {
     //const movieWarnings = getWarnings(movieID)

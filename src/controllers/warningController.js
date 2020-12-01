@@ -28,7 +28,7 @@ exports.warning_detail = async function (req, res) {
 
 // Handle warning create on POST.
 exports.warning_create_post = async function (req, res) {
-    const newWarning = req.params.warning
+    const newWarning = req.body.warning
     debug(`newWarning ${newWarning}`)
     const newRecord = newWarning
     debug(`newRecord: ${newRecord}`);

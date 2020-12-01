@@ -13,6 +13,7 @@ import { getAllResource } from "./requests/gets";
 import AddWarning from "./components/addWarning";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import Thanks from './components/Thanks'
 
 export default function App() {
     let [currentPage, setCurrentPage] = useState('Navigation')
@@ -22,6 +23,8 @@ export default function App() {
         console.log(selectedMovie.length);
 
         switch (currentPage) {
+            case "Thanks":
+                return <><Thanks setCurrentPage={setCurrentPage}/></>
             case "Navigation":
                 return (<div>
                     <button onClick={() => { setCurrentPage('AddWarning') }}>Go to AddWarning Component</button><br />
@@ -31,10 +34,10 @@ export default function App() {
                     <button onClick={() => { setCurrentPage('SignUp') }}>Go to Sign Up Component</button><br />
                     <button onClick={() => { setCurrentPage('Admin') }}>Go to Admin Component</button><br />
                 </div>)
-                break
+                
             case "AddWarning":
-                return (<AddWarning />)
-                break
+                return (<AddWarning setCurrentPage={ setCurrentPage }movieTitle={"The Lion King"} movieID={ '5fc1e881f7d9654d5c99ad9d' } userID={'5fc68a121262f52c7006d209'}/>)
+                
             case "SearchMovie":
                     return (
                         <div className="App">
@@ -43,7 +46,7 @@ export default function App() {
                             <Movielist setMovie={setSelectedMovie} />
                         </div>
                 );
-                break
+                
             case "MovieInfo":
                     return (
                         <div>
@@ -54,19 +57,19 @@ export default function App() {
                         </button>
                         </div>
                     );
-                break
+                
             case "SignIn":
                 return <SignIn />
-                break
+                
             case "SignUp":
                 return <SignUp />
-                break
+                
             case "Admin":
                 return (<><input id="hello" /><button onClick={async () => {
                  let resources = await getAllResource(document.getElementById('hello').value)
                  setResourceList(resources)
              }}>Get Stuff</button><br />{resourceList.map((resource) => <div>{JSON.stringify(resource)}</div>)}</>);
-                break
+                
             default:
                 return <h1>Error</h1>
         }
