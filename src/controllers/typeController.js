@@ -17,7 +17,7 @@ exports.type_list = async function(req, res) {
 
 // Display detail page for ONE type.
 exports.type_detail = async function(req, res) {
-  const t = req.body.type;
+  const t = req.params.type;
   debug(`Find single type: ${t}`);
   // an object is returned
   const response = await Type.findOne( { type: t })
@@ -33,7 +33,7 @@ exports.type_detail = async function(req, res) {
 
 // Handle type create on POST.
 exports.type_create_post = async function(req, res) {
-  const newType = req.body.type
+  const newType = req.params.type
   debug(`newType ${newType}`)
   const newRecord = {
     "title": newType
@@ -54,7 +54,7 @@ exports.type_create_post = async function(req, res) {
 
 // Handle type delete on POST.
 exports.type_delete_post = async function(req, res) {
-  const t = req.body.type
+  const t = req.params.type
   debug(`Deleting Type: ${t}`);
   
   // delete a single entry
@@ -73,8 +73,8 @@ exports.type_delete_post = async function(req, res) {
 
 // Handle type update on POST.
 exports.type_update_post = async function(req, res) {
-  const oldtype = req.body.oldtype
-  const newtype = req.body.newtype
+  const oldtype = req.params.oldtype
+  const newtype = req.params.newtype
   debug(`old and new: ${oldtype}, ${newtype}`);
   const response = await Type.updateOne({
     type: oldtype
