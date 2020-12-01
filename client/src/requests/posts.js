@@ -20,11 +20,11 @@ export async function AddResource(type,newResource){
     .then(setFrequency(''))    
 }
 
-export async function AddUserLogin(){
+export async function AddUserLogin(newUsername,newEmail,newPassword){
     fetch(serverURL + '/api/user/create', {                            
         method: 'post',
         headers: {"Content-Type": "application/json"},   
-        body: JSON.stringify({username:username, email:email,password:password})                    
+        body: JSON.stringify({username:newUsername, email:newEmail,password:newPassword})                    
     })
     .then(setUser(''))  
 }
