@@ -17,10 +17,10 @@ exports.severity_list = async function(req, res) {
 
 // Display detail page for ONE severity.
 exports.severity_detail = async function(req, res) {
-  const sev = req.params.severity;
+  const sev = req.params.title;
   debug(`Find single severity: ${sev}`);
   // an object is returned
-  const response = await Severity.findOne( { severity: sev });
+  const response = await Severity.findOne( { title: sev });
   if ( response != null ) {
     debug(`Found severity: ${sev}`);
     debug(`Find severity result: ${response}`);
@@ -33,7 +33,7 @@ exports.severity_detail = async function(req, res) {
 
 // Handle severity create on POST.
 exports.severity_create_post = async function(req, res) {
-  const newSeverity = req.body.severity;
+  const newSeverity = req.body.title;
   const newValue = req.body.value
   debug(`newSeverity : ${newSeverity}`);
   const newRecord = {
@@ -56,11 +56,11 @@ exports.severity_create_post = async function(req, res) {
 
 // Handle severity delete on POST.
 exports.severity_delete_post = async function(req, res) {
-  const sev = req.body.severity;
+  const sev = req.body.title;
   debug(`Deleting Severity: ${sev}`);
   
   // delete a single entry
-  const response = await Severity.deleteOne({ severity: sev });
+  const response = await Severity.deleteOne({ title: sev });
   const result = JSON.stringify(response);
   
   if (response.deletedCount != 0) {
@@ -75,15 +75,15 @@ exports.severity_delete_post = async function(req, res) {
 
 // Handle severity update on POST.
 exports.severity_update_post = async function(req, res) {
-  const oldsev = req.body.oldSeverity;
-  const newsev = req.body.newSeverity;
+  const oldsev = req.body.oldTitle;
+  const newsev = req.body.newTitle;
   debug(`old and new: ${oldsev}, ${newsev}`);
   const response = await Severity.updateOne({
-    severity: oldsev
+    title: oldsev
   },
   {
     $set: {
-      severity: newsev
+      title: newsev
     }
   })
   
