@@ -40,7 +40,6 @@ exports.user_create_post = async function(req, res) {
     "username": newUser.username,
     "email": newUser.email,
     "password": newUser.password,
-    "tokens": [ { "token": newUser.token } ]
   }
    debug(`newRecord: ${newRecord}`)
 
