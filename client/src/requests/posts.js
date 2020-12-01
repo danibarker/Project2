@@ -25,3 +25,11 @@ export default function AddUserLogin(newUsername,newEmail,newPassword){
         body: JSON.stringify({username:newUsername, email:newEmail,password:newPassword})                    
     })
 }
+
+export default function AddMovie(tmdbId, movieName) {
+  fetch(serverURL + '/api/movie/create', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({title: movieName, tmdb: tmdbId})
+  })
+}
