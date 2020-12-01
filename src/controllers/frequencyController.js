@@ -17,7 +17,7 @@ exports.frequency_list = async function(req, res) {
 
 // Display detail page for ONE frequency.
 exports.frequency_detail = async function(req, res) {
-  const freq = req.body.frequency
+  const freq = req.params.frequency
   debug(`Find single frequency: ${freq}`);
   // an object is returned
   const response = await Frequency.findOne( { frequency: freq });
@@ -56,7 +56,7 @@ exports.frequency_create_post = async function(req, res) {
 
 // Handle frequency delete on POST.
 exports.frequency_delete_post = async function(req, res) {
-  const freq = req.body.frequency
+  const freq = req.params.frequency
   debug(`Deleting Frequency: ${freq}`)
   
   // delete a single entry
@@ -75,8 +75,8 @@ exports.frequency_delete_post = async function(req, res) {
 
 // Handle frequency update on POST.
 exports.frequency_update_post = async function(req, res) {
-  const oldfreq = req.body.oldFrequency
-  const newfreq = req.body.newFrequency
+  const oldfreq = req.params.oldFrequency
+  const newfreq = req.params.newFrequency
   debug(`old and new: ${oldfreq}, ${newfreq}`)
   const response = await Frequency.updateOne({
     frequency: oldfreq

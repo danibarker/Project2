@@ -17,7 +17,7 @@ exports.category_list = async function(req, res) {
 
 // Display detail page for ONE category.
 exports.category_detail = async function(req, res) {
-  const cat = req.body.category;
+  const cat = req.params.category;
   debug(`Find single category: ${cat}`);
   // an object is returned
   const response = await Category.findOne( { category: cat });
@@ -33,7 +33,7 @@ exports.category_detail = async function(req, res) {
 
 // Handle category create on POST.
 exports.category_create_post = async function(req, res) {
-  const newCategory = req.body.category;
+  const newCategory = req.params.category;
   debug(`newCategory : ${newCategory}`);
   const newRecord = {
     "title": newCategory
@@ -54,7 +54,7 @@ exports.category_create_post = async function(req, res) {
 
 // Handle category delete on POST.
 exports.category_delete_post = async function(req, res) {
-  const cat = req.body.category;
+  const cat = req.params.category;
   debug(`Deleting Category: ${cat}`);
   
   // delete a single entry
@@ -73,8 +73,8 @@ exports.category_delete_post = async function(req, res) {
 
 // Handle category update on POST.
 exports.category_update_post = async function(req, res) {
-  const oldcat = req.body.oldCategory;
-  const newcat = req.body.newCategory;
+  const oldcat = req.params.oldCategory;
+  const newcat = req.params.newCategory;
   debug(`old and new: ${oldcat}, ${newcat}`);
   const response = await Category.updateOne({
     category: oldcat
