@@ -5,9 +5,9 @@ function sendData(warning) {
 }
 // Example of an adding warning using different categories
 let warnings = [
-    { category: "Violence", frequency: "Common", type: "Implied", severity: "Moderate" },
-    { category: "Nudity", frequency: "Single", type: "Suggested", severity: "Mild" },
-    { category: "Blood", frequency: "Sporadic", type: "Underlying", severity: "Severe" },
+    { category: "Violence", frequency: "Common", type: "Implied", severity: "Moderate", comments: "It is a bloody movie in the English context" },
+    { category: "Nudity", frequency: "Single", type: "Suggested", severity: "Mild", comments: "In my humble opinion,  It is too liberal"  },
+    { category: "Blood", frequency: "Sporadic", type: "Underlying", severity: "Severe", comments: "In general. the movie is great"  },
 ];
 export default function AddWarning() {
     const [warning, setWarning] = useState([]);
@@ -18,6 +18,7 @@ export default function AddWarning() {
     return (
         <div>
             <br></br>
+            <div className="ptther">
             <div className="ptther">
             <select
                 onChange={(event) => {
@@ -76,6 +77,7 @@ export default function AddWarning() {
             {/* <label htmlFor="commentBox">Details:</label>
             <textarea id="commentBox" rows="10" cols="80" /> */}
             <br></br>
+            
 
             <button
                 onClick={() =>
@@ -95,17 +97,24 @@ export default function AddWarning() {
                 Click
             </button>
             </div>
+            <div>
+            <label htmlFor="commentBox">Comments:</label>
+            <textarea id="commentBox" rows="1" cols="60" />
+            <button onClick={() => sendData(warning)}>Send Data</button>
+            </div>
+            </div>
+            
 
             <br />
             <br />
-            <div className="tomove">
                 
-                <table class="center" border="2">
+                <table align="center" border="2">
                     <tr>
                         <th>Category</th>
                         <th>Frequency</th>
                         <th>Type</th>
                         <th>Severity</th>
+                        <th>Comments</th>
                     </tr>
                     {warnings.length > 0
                         ? warnings.map((item) => (
@@ -122,23 +131,23 @@ export default function AddWarning() {
                                   <td key={warnings.indexOf(item)}>
                                       {item.severity}
                                   </td>
+                                  <td key={warnings.indexOf(item)}>
+                                      {item.comments}
+                                  </td>
                               </tr>
                           ))
                         : ""}
                 </table>
-                
-                <br></br>
-                <br></br>
               
               
-                <label htmlFor="commentBox">Comments:</label>
-                </div>
-
-            <div className="part">
-                <textarea id="commentBox" rows="10" cols="80" />
+                {/* <label htmlFor="commentBox">Comments:</label> */}
+           
+            {/* <div className="part"> */}
+                {/* <textarea id="commentBox" rows="2" cols="20" /> */}
+                {/* </div> */}
                 {/* <button onClick={() => sendData(warning)}>Send Data</button> */}
-                <button onClick={CreateNewWarning}>Send Data</button>
-            </div>
+                {/* <button onClick={CreateNewWarning}>Send Data</button> */}
+            {/* </div> */}
         </div>
     );
 }
