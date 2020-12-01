@@ -56,7 +56,7 @@ exports.frequency_create_post = async function(req, res) {
 
 // Handle frequency delete on POST.
 exports.frequency_delete_post = async function(req, res) {
-  const freq = req.params.frequency
+  const freq = req.body.frequency
   debug(`Deleting Frequency: ${freq}`)
   
   // delete a single entry
@@ -75,8 +75,8 @@ exports.frequency_delete_post = async function(req, res) {
 
 // Handle frequency update on POST.
 exports.frequency_update_post = async function(req, res) {
-  const oldfreq = req.params.oldFrequency
-  const newfreq = req.params.newFrequency
+  const oldfreq = req.body.oldFrequency
+  const newfreq = req.body.newFrequency
   debug(`old and new: ${oldfreq}, ${newfreq}`)
   const response = await Frequency.updateOne({
     frequency: oldfreq

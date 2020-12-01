@@ -56,7 +56,7 @@ exports.type_create_post = async function(req, res) {
 
 // Handle type delete on POST.
 exports.type_delete_post = async function(req, res) {
-  const t = req.params.type
+  const t = req.body.type
   debug(`Deleting Type: ${t}`);
   
   // delete a single entry
@@ -75,8 +75,8 @@ exports.type_delete_post = async function(req, res) {
 
 // Handle type update on POST.
 exports.type_update_post = async function(req, res) {
-  const oldtype = req.params.oldtype
-  const newtype = req.params.newtype
+  const oldtype = req.body.oldtype
+  const newtype = req.body.newtype
   debug(`old and new: ${oldtype}, ${newtype}`);
   const response = await Type.updateOne({
     type: oldtype
