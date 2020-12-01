@@ -31,7 +31,7 @@ router.post('/movie/:id/delete', movie_controller.movie_delete_post);
 router.post('/movie/:id/update', movie_controller.movie_update_post);
 
 // GET request for one Movie.
-router.get('/movie/:id', movie_controller.movie_detail);
+router.get('/movie/:tmdb', movie_controller.movie_detail);
 
 // GET request for list of all Movie items.
 router.get('/movies', movie_controller.movie_list);
@@ -82,13 +82,13 @@ router.get('/warnings', warning_controller.warning_list);
 router.post('/category/create', category_controller.category_create_post);
 
 // POST request to delete category.
-router.post('/category/:id/delete', category_controller.category_delete_post);
+router.post('/category/:title/delete', category_controller.category_delete_post);
 
 // POST request to update category.
-router.post('/category/:id/update', category_controller.category_update_post);
+router.post('/category/:title/update', category_controller.category_update_post);
 
 // GET request for one category.
-router.get('/category/:id', category_controller.category_detail);
+router.get('/category/:title', category_controller.category_detail);
 
 // GET request for list of all category.
 router.get('/categories', category_controller.category_list);
@@ -101,13 +101,13 @@ router.get('/categories', category_controller.category_list);
 router.post('/frequency/create', frequency_controller.frequency_create_post);
 
 // POST request to delete frequency.
-router.post('/frequency/:id/delete', frequency_controller.frequency_delete_post);
+router.post('/frequency/:title/delete', frequency_controller.frequency_delete_post);
 
 // POST request to update frequency.
-router.post('/frequency/:id/update', frequency_controller.frequency_update_post);
+router.post('/frequency/:title/update', frequency_controller.frequency_update_post);
 
 // GET request for one frequency.
-router.get('/frequency/:id', frequency_controller.frequency_detail);
+router.get('/frequency/:title', frequency_controller.frequency_detail);
 
 // GET request for list of all frequency.
 router.get('/frequencies', frequency_controller.frequency_list);
@@ -120,13 +120,13 @@ router.get('/frequencies', frequency_controller.frequency_list);
 router.post('/type/create', type_controller.type_create_post);
 
 // POST request to delete type.
-router.post('/type/:id/delete', type_controller.type_delete_post);
+router.post('/type/:title/delete', type_controller.type_delete_post);
 
 // POST request to update type.
-router.post('/type/:id/update', type_controller.type_update_post);
+router.post('/type/:title/update', type_controller.type_update_post);
 
 // GET request for one type.
-router.get('/type/:id', type_controller.type_detail);
+router.get('/type/:title', type_controller.type_detail);
 
 // GET request for list of all type.
 router.get('/types', type_controller.type_list);
@@ -139,13 +139,13 @@ router.get('/types', type_controller.type_list);
 router.post('/severity/create', severity_controller.severity_create_post);
 
 // POST request to delete severity.
-router.post('/severity/:id/delete', severity_controller.severity_delete_post);
+router.post('/severity/:title/delete', severity_controller.severity_delete_post);
 
 // POST request to update severity.
-router.post('/severity/:id/update', severity_controller.severity_update_post);
+router.post('/severity/:title/update', severity_controller.severity_update_post);
 
 // GET request for one severity.
-router.get('/severity/:id', severity_controller.severity_detail);
+router.get('/severity/:title', severity_controller.severity_detail);
 
 // GET request for list of all severities.
 router.get('/severities', severity_controller.severity_list);

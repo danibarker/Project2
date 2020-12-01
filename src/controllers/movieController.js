@@ -20,7 +20,7 @@ exports.movie_list = async function(req, res) {
 
 // Display detail page for a specific movie.
 exports.movie_detail = async function(req, res) {
-  const tmdb = req.body.tmdb;
+  const tmdb = req.params.tmdb;
   debug(`Find single movie: ${tmdb}`);
   // an object is returned
   const response = await Movie.findOne( { tmdb: tmdb });
@@ -37,7 +37,7 @@ exports.movie_detail = async function(req, res) {
 
 // Handle movie create on POST.
 exports.movie_create_post = async function(req, res) {
-  const newMovie = JSON.parse(JSON.stringify(req.body))
+  const newMovie = JSON.parse(JSON.stringify(req.params))
   debug(`newmovie ${newMovie}`)
 
   const newRecord = {
@@ -60,7 +60,7 @@ exports.movie_create_post = async function(req, res) {
 
 // Handle movie delete on POST.
 exports.movie_delete_post = async function(req, res) {
-  const tmdb = req.body.tmdb;
+  const tmdb = req.params.tmdb;
   debug(`Deleting Movie: ${tmdb}`);
   
   // delete a single entry
@@ -81,7 +81,7 @@ exports.movie_delete_post = async function(req, res) {
 
 // Handle movie update on POST.
 exports.movie_update_post = async function(req, res) {
-  const movieObj = JSON.parse(JSON.stringify(req.body))
+  const movieObj = JSON.parse(JSON.stringify(req.params))
   debug(`movie ${movieObj}`)
   const tmdb = movieObj.tmdb
 

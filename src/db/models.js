@@ -98,7 +98,7 @@ const warningSchema = new mongoose.Schema(
             required: true,
             ref: "Severity",
         },
-        description: {
+        comment: {
             type: String,
         },
     },

@@ -48,7 +48,7 @@ exports.warning_create_post = async function (req, res) {
 
 // Handle warning delete on POST.
 exports.warning_delete_post = async function (req, res) {
-    const warning = req.body.warning
+    const warning = req.params.warning
     debug(`Deleting Frequency: ${warning}`)
 
     // delete a single entry
@@ -67,8 +67,8 @@ exports.warning_delete_post = async function (req, res) {
 
 // Handle warning update on POST.
 exports.warning_update_post = async function (req, res) {
-    const oldWarning = req.body.oldWarning
-    const newWarning = req.body.newWarning
+    const oldWarning = req.params.oldWarning
+    const newWarning = req.params.newWarning
     debug(`old and new: ${oldWarning}, ${newWarning}`)
     const response = await Warning.updateOne({
         warning: oldWarning

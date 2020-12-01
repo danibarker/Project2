@@ -126,9 +126,8 @@ ul {
     box-shadow: inset 1px 1px 0 white;
     max-height: 450px;
 }
-
-.warningPageContainer {
-  z-index: 1;
+.pageContainer {
+    z-index: 1;
     position: fixed;
     width: 90%;
     margin: 30px 0 30px 5%;
@@ -138,17 +137,21 @@ ul {
     border-radius: 5px;
     box-shadow: inset 1px 1px 0 white;
     overflow-y: auto;
+}
+.fullPageContainer {
+    height: 80%
+}
+.threeQuartersPageContainer {
+  
     height: 60%;
 }
-::-webkit-scrollbar {
-  width: 100px;
-}
-::-webkit-scrollbar-button {
-  color: blue;
+.halfContainer {
+    height: 40%
 }
 
+
 .warningPageContainer-Bottom {
-  bottom: 0;
+  /*bottom: 0;*/
   height: 15%;
 
 }
@@ -189,4 +192,58 @@ ul {
 .warningListItem {
   width: 200px;
   margin: 10px;
+}
+@media only screen and (max-width: 600px) {
+
+    /* Force table to not be like tables anymore */
+    .collapsible-tables table,
+    .collapsible-tables thead,
+    .collapsible-tables tbody,
+    .collapsible-tables th,
+    .collapsible-tables td,
+    .collapsible-tables tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        .collapsible-tables thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    .collapsible-tables tr {
+        border: 1px solid #ccc;
+    }
+
+    .collapsible-tables td {
+        /* Behave  like a "row" */
+        height: 2rem;
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+        .collapsible-tables td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /*
+	Label the data
+	*/
+        .collapsible-tables td:before {
+            content: attr(data-title);
+        }
 }
