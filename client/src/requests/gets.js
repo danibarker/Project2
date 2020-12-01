@@ -53,7 +53,7 @@ export async function getPopular() {
 }
 
 export async function getAllResource(type) {
-    const response = await fetch(serverURL + `/api/${type}/create`)
+    const response = await fetch(serverURL + `/api/${type}`)
     const resource = await response.json();
     return resource
 }

@@ -16,7 +16,7 @@ export default function AddWarning() {
     const [type, setType] = useState("Explicit");
     const [severity, setSeverity] = useState("Moderate");
     return (
-        <div>
+        <div className="pageContainer fullPageContainer">
             <br></br>
             <div className="ptther">
             <select

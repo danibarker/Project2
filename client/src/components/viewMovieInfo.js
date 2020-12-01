@@ -101,12 +101,12 @@ export default function ViewMovieInfo({ movieID }) {
     
     return (
         <>
-            <div className="warningPageContainer">
+            <div className="pageContainer threeQuartersPageContainer">
                 <h2>{movieTitle}</h2>
                 <h3>Warnings:</h3>
                 <ul className="warningList">{warningsListItems}</ul>
             </div>
-            <div className="warningPageContainer warningPageContainer-Bottom">
+            <div className="pageContainer warningPageContainer-Bottom">
                 <button>Add warning</button>
             </div>
         </>
