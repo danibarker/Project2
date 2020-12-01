@@ -34,9 +34,11 @@ exports.frequency_detail = async function(req, res) {
 // Handle frequency create on POST.
 exports.frequency_create_post = async function(req, res) {
   const newFrequency = req.body.frequency;
+  const newValue = req.body.value
   debug(`newFrequency: ${newFrequency}`);
   const newRecord = {
-    "title": newFrequency
+    "title": newFrequency,
+    "value": newValue
   }
   debug(`newRecord: ${newRecord}`);
   

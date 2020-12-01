@@ -34,9 +34,11 @@ exports.severity_detail = async function(req, res) {
 // Handle severity create on POST.
 exports.severity_create_post = async function(req, res) {
   const newSeverity = req.body.severity;
+  const newValue = req.body.value
   debug(`newSeverity : ${newSeverity}`);
   const newRecord = {
-    "title": newSeverity
+    "title": newSeverity,
+    "value": newValue
   }
   debug(`newRecord: ${newRecord}`);
   

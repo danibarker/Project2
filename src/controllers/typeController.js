@@ -34,9 +34,11 @@ exports.type_detail = async function(req, res) {
 // Handle type create on POST.
 exports.type_create_post = async function(req, res) {
   const newType = req.body.type
+  const newValue = req.body.value
   debug(`newType ${newType}`)
   const newRecord = {
-    "title": newType
+    "title": newType,
+    "value": newValue
   }
   debug(`newRecord: ${newRecord}`);
   
