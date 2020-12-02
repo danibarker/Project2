@@ -64,8 +64,8 @@ export async function getOneResourceByID(type, id) {
     return resource
 }
 
-export async function getUser(username) {
-    const response = await fetch(serverURL + `/api/user/${username}`)
+export async function getUser(userName) {
+    const response = await fetch(serverURL + `/api/user/${userName}`)
     const resource = await response.json();
     return resource
 }
