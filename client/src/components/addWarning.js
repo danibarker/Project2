@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { getAllResource } from "../requests/gets";
-import { CreateNewWarning } from "../requests/posts";
+import { createNewWarning } from "../requests/posts";
 
 // Example of an adding warning using different categories
 
@@ -150,7 +150,7 @@ export default function AddWarning({
                 <div className="part">
                     <button
                         onClick={() => {
-                            CreateNewWarning(warnings);
+                            createNewWarning(warnings);
                             setCurrentPage("Thanks");
                         }}
                     >
