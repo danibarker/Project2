@@ -63,3 +63,15 @@ export async function getOneResourceByID(type, id) {
     const resource = await response.json();
     return resource
 }
+
+export async function getUser(username) {
+    const response = await fetch(serverURL + `/api/user/${username}`)
+    const resource = await response.json();
+    return resource
+}
+
+export async function getMovie(tmdbID) {
+    const response = await fetch(serverURL + `/api/movie/${tmdbID}`)
+    const resource = await response.json();
+    return resource
+}
