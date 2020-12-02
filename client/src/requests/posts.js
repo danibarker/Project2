@@ -1,5 +1,5 @@
-const serverURL = "http://localhost:3000";
-
+const serverURL = "http://localhost:3000"; // comment this line for npm run build
+// const serverURL = '' // comment this line for npm run start 
 export function createNewWarning(warnings){
     for (let warning of warnings) {        
         fetch(serverURL + '/api/warning/create', {                            
