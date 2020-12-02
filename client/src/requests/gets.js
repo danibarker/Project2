@@ -1,5 +1,5 @@
-const serverURL = "http://localhost:3000";
-
+const serverURL = "http://localhost:3000"; //commment this line out for npm run build
+// const serverURL = '' //comment this line out for npm run start
 // Warnings
 
 //get by movie ID
