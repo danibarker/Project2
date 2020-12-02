@@ -1,6 +1,6 @@
 const serverURL = "http://localhost:3000";
 
-export function createNewWarning(){
+export function createNewWarning(warnings){
     for (let warning of warnings) {        
         fetch(serverURL + '/api/warning/create', {                            
             method: 'post',
