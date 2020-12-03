@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addResource } from "../requests/posts";
+import { addResource, removeResource } from "../requests/posts";
 import { getAllResource } from "../requests/gets";
 
 
@@ -56,6 +56,15 @@ const Category = () => {
       setLoading(false)
     }, 2000);
   };
+
+  const deleteCategory = async (deleteTitle) => {
+    setLoading(true);
+    await removeResource("category", { title: deleteTitle});
+    setTimeout(() => {
+      getPageData();
+      setLoading(false)
+    }, 2000);
+  }
   if (loading) {
     return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
   }
@@ -67,7 +76,7 @@ const Category = () => {
       <ul>
         <div>
           {categories.map((category) => (
-            <li>{category.title}</li>
+            <li>{category.title} <button onClick={() => deleteCategory(category.title)} class="deletebtn"> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -93,6 +102,7 @@ const Category = () => {
 const Frequency = () => {
   const [frequencies, setFrequencies] = useState();
   const [newFrequency, setNewFrequency] = useState();
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -106,11 +116,25 @@ const Frequency = () => {
   };
 
   const createNewFrequency = async () => {
-    await addResource("frequency", { title: newFrequency, value:newFrequency});
+    setLoading(true);
+    await addResource("frequency", { title: newFrequency, value: newFrequency});
     setTimeout(() => {
       getPageData();
+      setLoading(false)
     }, 2000);
   };
+
+  const deleteFrequency = async (deleteTitle) => {
+    setLoading(true);
+    await removeResource("frequency", { title: deleteTitle});
+    setTimeout(() => {
+      getPageData();
+      setLoading(false)
+    }, 2000);
+  }
+  if (loading) {
+    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+  }
   if (!frequencies) {
     return <h1>Loading, please wait....</h1>;
   }
@@ -119,7 +143,7 @@ const Frequency = () => {
       <ul>
         <div>
           {frequencies.map((frequency) => (
-            <li>{frequency.title}</li>
+            <li>{frequency.title} <button onClick={() => deleteFrequency(frequency.title)}> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -137,14 +161,15 @@ const Frequency = () => {
     </div>
   );
 
-
 };
+
 
 // Adding Type
 
 const Type = () => {
   const [types, setTypes] = useState();
   const [newType, setNewType] = useState();
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -158,11 +183,25 @@ const Type = () => {
   };
 
   const createNewType = async () => {
-    await addResource("type", { title: newType});
+    setLoading(true);
+    await addResource("type", { title: newType, value:newType});
     setTimeout(() => {
       getPageData();
+      setLoading(false)
     }, 2000);
   };
+
+  const deleteType = async (deleteTitle) => {
+    setLoading(true);
+    await removeResource("type", { title: deleteTitle});
+    setTimeout(() => {
+      getPageData();
+      setLoading(false)
+    }, 2000);
+  }
+  if (loading) {
+    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+  }
   if (!types) {
     return <h1>Loading, please wait....</h1>;
   }
@@ -171,7 +210,7 @@ const Type = () => {
       <ul>
         <div>
           {types.map((type) => (
-            <li>{type.title}</li>
+            <li>{type.title} <button onClick={() => deleteType(type.title)}> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -182,22 +221,22 @@ const Type = () => {
           onChange={(e) => {
             setNewType(e.target.value);
           }}
-          placeholder="New Frequency Title"
+          placeholder="New Type Title"
         />
         <button onClick={createNewType}>Submit</button>
       </div>
     </div>
   );
 
-
 };
 
-// Adding Severity
 
+// Adding Severity
 
 const Severity = () => {
   const [severities, setSeverities] = useState();
   const [newSeverity, setNewSeverity] = useState();
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -211,11 +250,25 @@ const Severity = () => {
   };
 
   const createNewSeverity = async () => {
-    await addResource("severity", { title: newSeverity});
+    setLoading(true);
+    await addResource("severity", { title: newSeverity, value: newSeverity});
     setTimeout(() => {
       getPageData();
+      setLoading(false)
     }, 2000);
   };
+
+  const deleteSeverity = async (deleteTitle) => {
+    setLoading(true);
+    await removeResource("severity", { title: deleteTitle});
+    setTimeout(() => {
+      getPageData();
+      setLoading(false)
+    }, 2000);
+  }
+  if (loading) {
+    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+  }
   if (!severities) {
     return <h1>Loading, please wait....</h1>;
   }
@@ -224,7 +277,7 @@ const Severity = () => {
       <ul>
         <div>
           {severities.map((severity) => (
-            <li>{severity.title}</li>
+            <li>{severity.title} <button onClick={() => deleteSeverity(severity.title)}> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -241,6 +294,5 @@ const Severity = () => {
       </div>
     </div>
   );
-
 
 };

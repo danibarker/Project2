@@ -9,6 +9,12 @@ a {
 .App {
   text-align: center;
 }
+
+.deletebtn {
+  background-color: #f22336;
+}
+
+
 .ptther {
   display: flex;
   margin-left:10px;
