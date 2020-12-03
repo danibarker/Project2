@@ -102,6 +102,7 @@ const Category = () => {
 const Frequency = () => {
   const [frequencies, setFrequencies] = useState();
   const [newFrequency, setNewFrequency] = useState();
+  const [newValue, setNewValue] = useState();
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
@@ -117,7 +118,7 @@ const Frequency = () => {
 
   const createNewFrequency = async () => {
     setLoading(true);
-    await addResource("frequency", { title: newFrequency, value: newFrequency});
+    await addResource("frequency", { title: newFrequency, value: newValue});
     setTimeout(() => {
       getPageData();
       setLoading(false)
@@ -156,6 +157,14 @@ const Frequency = () => {
           }}
           placeholder="New Frequency Title"
         />
+        <input
+          onChange={(e) => {
+            setNewValue(e.target.value);
+          }}
+          placeholder="New Frequency Value"
+        />
+
+
         <button onClick={createNewFrequency}>Submit</button>
       </div>
     </div>
