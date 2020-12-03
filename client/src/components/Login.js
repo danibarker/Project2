@@ -1,37 +1,28 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import {Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row} from "reactstrap";
-class Login extends Component {
-  constructor() {
-    super();
+export default function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  
 
-    this.state = {
-      Email: "",
-      Password: "",
-    };
-
-    this.Password = this.Password.bind(this);
-    this.Email = this.Email.bind(this);
-    this.login = this.login.bind(this);
+  const changeUsername = (event) => {
+    setUsername( event.target.value );
   }
-
-  Email(event) {
-    this.setState({ Email: event.target.value });
+  const changePassword = (event) => {
+    setPassword( event.target.value );
   }
-  Password(event) {
-    this.setState({ Password: event.target.value });
-  }
-  login(event) {
+  const login = ()=> {
     // debugger;
-    fetch("http://localhost:3000/Api/login/Login", {
+    fetch("http://localhost:3000/api/login/", {
       method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Email: this.state.Email,
-        Password: this.state.Password,
+        username: username,
+        password: password,
       }),
     })
       .then((Response) => Response.json())
@@ -42,7 +33,7 @@ class Login extends Component {
       });
   }
 
-  render() {
+ 
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -92,6 +83,3 @@ class Login extends Component {
       </div>
     );
   }
-}
-
-export default Login;

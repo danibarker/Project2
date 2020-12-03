@@ -1,4 +1,4 @@
-const serverURL = "http://localhost:3000"; //commment this line out for npm run build
+const serverURL = "http://localhost:8000"; //commment this line out for npm run build
 // const serverURL = '' //comment this line out for npm run start
 // Warnings
 

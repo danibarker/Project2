@@ -1,4 +1,4 @@
-const serverURL = "http://localhost:3000"; // comment this line for npm run build
+const serverURL = "http://localhost:8000"; // comment this line for npm run build
 // const serverURL = '' // comment this line for npm run start 
 export function createNewWarning(warnings){
     for (let warning of warnings) {        
