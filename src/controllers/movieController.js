@@ -2,6 +2,7 @@ const { Movie } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
 
+
 // Display list of all movies.
 exports.movie_list = async function(req, res) {
   // an array of entries is returned
@@ -18,22 +19,22 @@ exports.movie_list = async function(req, res) {
 // Display detail page for a specific movie.
 exports.movie_detail = async function(req, res) {
   const tmdb = req.params.tmdb;
-  debug(`Find single movie: ${tmdb}`);
+  console.log(`Find single movie: ${tmdb}`);
   // an object is returned
   const response = await Movie.findOne( { tmdb: tmdb });
   if ( response != null ) {
     const movie = response.title;
-    debug(`Found movie: ${movie}`);
-    debug(`Find movie result: ${response}`);
+    console.log(`Found movie: ${movie}`);
+    console.log(`Find movie result: ${response}`);
     res.status(200).json(response);
   } else {
-    debug(`Error: cannot find movie with tmdb id: ${tmdb}`);
+    console.log(`Error: cannot find movie with tmdb id: ${tmdb}`);
     res.sendStatus(400);
   }
 };
 
 // Handle movie create on POST.
-exports.movie_create_post = async function(req, res) {
+exports.movie_create_post = async function (req, res) {
   const newMovie = req.body
   debug(`newmovie ${newMovie}`)
 
@@ -42,17 +43,18 @@ exports.movie_create_post = async function(req, res) {
     "tmdb": newMovie.tmdb,
   }
   debug('movie newRecord: ' + newRecord);
-  
+  try{
   // add new record to database
-  await Movie.create(newRecord).then((result) => {
-    debug(`Success: movie created: ${newRecord}`);  // success
-    debug(`Create movie result: ${result}`);
-    res.status(200).json(result);
-  }).catch((error) => {
+  const response = await Movie.create(newRecord)
+  
+  console.log(response)
+  res.status(200).send(response);
+  } catch (error) {
+    console.log(error)
     debug(`Error: unable to create movie: ${newRecord}`);  // failure
     debug(`Error: movie error: ${error}`);
-    res.status(500).json(error);
-  })
+    res.status(500).send(error);
+  }
 };
 
 // Handle movie delete on POST.

@@ -3,7 +3,8 @@ const debug = require('debug')('mwdb:server');
 
 // Display list of all warnings.
 exports.warning_list = async function (req, res) {
-    const warningEntries = await Warning.find();
+    console.log(req.query)
+    const warningEntries = await Warning.find(req.query);
     if (warningEntries != null) {
         debug(`Success: warnings found: ${warningEntries}`);  // success
         res.status(200).json(warningEntries);

@@ -6,10 +6,7 @@ const serverURL = "http://localhost:8000"; //commment this line out for npm run 
 export async function getWarnings(movieID) {
     try {
         const response = await fetch(
-            serverURL + "/warnings/movieID=" + movieID,
-            {
-                method: "GET",
-            }
+            serverURL + "/api/warnings?movieID=" + movieID
         );
         const result = await response.json();
 
@@ -35,7 +32,7 @@ export async function searchTMDB(searchValue) {
         if (result.results) {
             result.results.forEach((movie) => {
                 if (suggestions.length < 6) {
-                    suggestions.push(movie.original_title);
+                    suggestions.push({ title: movie.original_title, id: movie.id });
                 }
             });
         }
