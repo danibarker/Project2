@@ -119,7 +119,6 @@ export default function App() {
     };
     return (
         <>
-            {JSON.stringify(selectedMovie)+currentPage}
             <NavBar setCurrentPage={setCurrentPage} />
             <Home />
         </>
