@@ -6,7 +6,7 @@ import Movielist from "./components/Movielist";
 import ViewMovieInfo from "./components/viewMovieInfo";
 import { getAllResource } from "./requests/gets";
 import AddWarning from "./components/addWarning";
-import SignIn from "./components/SignIn";
+import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Thanks from "./components/Thanks";
 
@@ -109,8 +109,8 @@ export default function App() {
                 );
 
             case "SignIn":
-                return <SignIn />;
-
+                return <Login />
+                
             case "SignUp":
                 return <SignUp />;
 
