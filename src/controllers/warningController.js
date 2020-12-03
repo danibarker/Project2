@@ -16,7 +16,7 @@ exports.warning_list = async function (req, res) {
 // Query warnings
 exports.warning_detail = async function (req, res) {
     let query = req.query
-    let results = Warning.find(query)
+    let results = await Warning.find(query)
     if (results) {
         debug(`Success: types found: ${results}`);  // success
         res.status(200).json(results);
@@ -48,11 +48,11 @@ exports.warning_create_post = async function (req, res) {
 
 // Handle warning delete on POST.
 exports.warning_delete_post = async function (req, res) {
-    const warning = req.params.warning
+    const warning = req.body.warning
     debug(`Deleting Frequency: ${warning}`)
 
     // delete a single entry
-    const response = await Warning.deleteOne({ warning: warning });
+    const response = await Warning.findOneAndDelete(warning);
     const result = JSON.stringify(response);
 
     if (response.deletedCount != 0) {
@@ -67,16 +67,14 @@ exports.warning_delete_post = async function (req, res) {
 
 // Handle warning update on POST.
 exports.warning_update_post = async function (req, res) {
-    const oldWarning = req.params.oldWarning
-    const newWarning = req.params.newWarning
+    const oldWarning = req.body.oldWarning
+    const newWarning = req.body.newWarning
     debug(`old and new: ${oldWarning}, ${newWarning}`)
-    const response = await Warning.updateOne({
-        warning: oldWarning
-    },
+    const response = await Warning.updateOne(
+        oldWarning
+    ,
         {
-            $set: {
-                warning: newWarning
-            }
+            $set: newWarning
         })
 
     const result = JSON.stringify(response);

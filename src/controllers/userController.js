@@ -33,7 +33,7 @@ exports.user_detail = async function(req, res) {
 
 // Handle user create on POST.
 exports.user_create_post = async function(req, res) {
-  const newUser = JSON.parse(JSON.stringify(req.params))
+  const newUser = req.body
   debug(`newuser ${newUser}`)
   
   const newRecord = {
@@ -58,7 +58,7 @@ exports.user_create_post = async function(req, res) {
 
 // Handle user delete on POST.
 exports.user_delete_post = async function(req, res) {
-  const user = req.params.username;
+  const user = req.body.username;
   debug(`Deleting User: ${user}`);
   
   // the commented code below is supposed to work based on examples
@@ -92,7 +92,7 @@ exports.user_delete_post = async function(req, res) {
 
 // Handle user update on POST.
 exports.user_update_post = async function(req, res) {
-  const userObj = JSON.parse(JSON.stringify(req.params))
+  const userObj = req.body
   debug(`User ${userObj}`)
   const user = userObj.username
   

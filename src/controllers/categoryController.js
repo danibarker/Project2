@@ -32,23 +32,23 @@ exports.category_detail = async function (req, res) {
 
 // Handle category create on POST.
 exports.category_create_post = async (req, res) => {
-    const newCategory = req.body.category;
-    const newValue = req.body.value;
-    debug(`newCategory : ${newCategory}, newValue: ${newValue}`);
+    const newCategory = req.body.title;
+    
+    debug(`newCategory : ${newCategory}`);
     const newRecord = {
-        title: newCategory,
-        value: newValue,
+        title: newCategory
     };
     debug(`newRecord: ${JSON.stringify(newRecord)}`);
     try {
         // add new record to database
         const response = await Category.create(newRecord);
-        const result = await response.json();
-
+        
+        console.log(response)
         debug(`Success: category created: ${newCategory}`); // success
-        debug(`Create category result: ${result}`);
-        res.status(200).json(result);
+        debug(`Create category result: ${response}`);
+        res.status(200).json(response);
     } catch (error) {
+        console.log(error)
         debug(`Error: unable to create category: ${newCategory}`); // failure
         debug(`Error: category error: ${error}`);
         res.status(500).json(error);
@@ -57,11 +57,11 @@ exports.category_create_post = async (req, res) => {
 
 // Handle category delete on POST.
 exports.category_delete_post = async function (req, res) {
-    const cat = req.params.category;
+    const cat = req.body.title;
     debug(`Deleting Category: ${cat}`);
 
     // delete a single entry
-    const response = await Category.deleteOne({ category: cat });
+    const response = await Category.deleteOne({ title: cat });
     const result = JSON.stringify(response);
 
     if (response.deletedCount != 0) {
@@ -76,16 +76,16 @@ exports.category_delete_post = async function (req, res) {
 
 // Handle category update on POST.
 exports.category_update_post = async function (req, res) {
-    const oldcat = req.params.oldCategory;
-    const newcat = req.params.newCategory;
+    const oldcat = req.body.oldCategory;
+    const newcat = req.body.newCategory;
     debug(`old and new: ${oldcat}, ${newcat}`);
     const response = await Category.updateOne(
         {
-            category: oldcat,
+            title: oldcat,
         },
         {
             $set: {
-                category: newcat,
+                title: newcat,
             },
         }
     );

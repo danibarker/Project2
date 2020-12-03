@@ -9,7 +9,7 @@ import AddWarning from "./components/addWarning";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Thanks from "./components/Thanks";
-
+import Admin from './components/Admin'
 export default function App() {
     let [currentPage, setCurrentPage] = useState("Navigation");
     let [selectedMovie, setSelectedMovie] = useState("");
@@ -115,25 +115,7 @@ export default function App() {
                 return <SignUp />;
 
             case "Admin":
-                return (
-                    <>
-                        <input id="hello" />
-                        <button
-                            onClick={async () => {
-                                let resources = await getAllResource(
-                                    document.getElementById("hello").value
-                                );
-                                setResourceList(resources);
-                            }}
-                        >
-                            Get Stuff
-                        </button>
-                        <br />
-                        {resourceList.map((resource) => (
-                            <div>{JSON.stringify(resource)}</div>
-                        ))}
-                    </>
-                );
+                return <Admin />;
 
             default:
                 return <h1>Error</h1>;

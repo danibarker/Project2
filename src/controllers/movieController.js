@@ -1,9 +1,6 @@
 const { Movie } = require('../db/models');
 const debug = require('debug')('mwdb:server');
 
-exports.index = function(req, res) {
-    res.send('NOT IMPLEMENTED: Site Home Page');
-};
 
 // Display list of all movies.
 exports.movie_list = async function(req, res) {
@@ -37,7 +34,7 @@ exports.movie_detail = async function(req, res) {
 
 // Handle movie create on POST.
 exports.movie_create_post = async function(req, res) {
-  const newMovie = JSON.parse(JSON.stringify(req.params))
+  const newMovie = req.body
   debug(`newmovie ${newMovie}`)
 
   const newRecord = {
@@ -60,7 +57,7 @@ exports.movie_create_post = async function(req, res) {
 
 // Handle movie delete on POST.
 exports.movie_delete_post = async function(req, res) {
-  const tmdb = req.params.tmdb;
+  const tmdb = req.body.tmdb;
   debug(`Deleting Movie: ${tmdb}`);
   
   // delete a single entry
@@ -81,7 +78,7 @@ exports.movie_delete_post = async function(req, res) {
 
 // Handle movie update on POST.
 exports.movie_update_post = async function(req, res) {
-  const movieObj = JSON.parse(JSON.stringify(req.params))
+  const movieObj = req.body
   debug(`movie ${movieObj}`)
   const tmdb = movieObj.tmdb
 
