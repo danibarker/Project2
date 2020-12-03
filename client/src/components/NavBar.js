@@ -1,39 +1,44 @@
-import React, { Component } from "react";
-// import { FaAlignRight } from "react-icons/fa";
+import React from "react";
 import "../css/App.css";
 import Box from "@material-ui/core/Box";
-import {Link} from 'react-router-dom';
 
-export default class NavBar extends Component {
-  state = {
-    toggle: false,
-  };
-  Toggle = () => {
-    this.setState({ toggle: !this.state.toggle });
-  };
-  render() {
-    
+export default function NavBar({ setCurrentPage }) {
     return (
-      <>
-        <div className="navBar">
-          {/* <button onClick={this.Toggle}>
-            <FaAlignRight />
-          </button> */}
-
-          <Box display="flex" p={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300">
-              <Link to='/' > Home</Link>
+        <>
+            <div className="navBar">
+                <Box display="flex" p={1} bgcolor="background.paper">
+                    <Box p={1} bgcolor="grey.300">
+                        <p
+                            onClick={() => {
+                                setCurrentPage("Navigation");
+                            }}
+                        >
+                            Home
+                        </p>
                     </Box>
-                    <Box textAlign={'center'} flexGrow={1} p={1}>The Movie Warning Database</Box>
-            <Box p={1} bgcolor="grey.300">
-              {/* <Link to='/SignIn'> Sign in</Link> */}
-            </Box>
-            <Box p={1} bgcolor="grey.300">
-              {/* <Link to='/signUp'> Sign Up</Link> */}
-            </Box>
-          </Box>
-        </div>
-      </>
+                    <Box textAlign={"center"} flexGrow={1} p={1}>
+                        The Movies Warning Database
+                    </Box>
+                    <Box p={1} bgcolor="grey.300">
+                        <p
+                            onClick={() => {
+                                setCurrentPage("SignIn");
+                            }}
+                        >
+                            Sign in
+                        </p>
+                    </Box>
+                    <Box p={1} bgcolor="grey.300">
+                        <p
+                            onClick={() => {
+                                setCurrentPage("SignUp");
+                            }}
+                        >
+                            Sign Up
+                        </p>
+                    </Box>
+                </Box>
+            </div>
+        </>
     );
-  }
 }
