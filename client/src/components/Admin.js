@@ -31,13 +31,11 @@ export default ({ setCurrentPage }) => {
     </div>
   );
 };
-// const Frequency = () => {
-//   return <h1>Frequency</h1>
-// }
 
 const Category = () => {
   const [categories, setCategories] = useState();
   const [newCategory, setNewCategory] = useState();
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -51,11 +49,16 @@ const Category = () => {
   };
 
   const createNewCategory = async () => {
+    setLoading(true);
     await addResource("category", { title: newCategory});
     setTimeout(() => {
       getPageData();
+      setLoading(false)
     }, 2000);
   };
+  if (loading) {
+    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+  }
   if (!categories) {
     return <h1>Loading, please wait....</h1>;
   }
@@ -82,14 +85,7 @@ const Category = () => {
     </div>
   );
 
-
 };
-
-
-
-
-
-
 
 
 // Adding Frequencies
