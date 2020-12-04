@@ -24,5 +24,15 @@ router.get("/findMovie", async (req, res) => {
         console.log(err);
     }
 });
-
+router.get("/getMovie", async (req, res) => {
+    const { tmdb } = req.query;
+    const searchURL = `https://api.themoviedb.org/3/movie/${tmdb}?api_key=${apiKey}`;
+    try {
+        const searchResults = await fetch(searchURL, { method: "GET" });
+        const result = await searchResults.json();
+        res.send(result);
+    } catch (err) {
+        console.log(err);
+    }
+});
 module.exports = router;

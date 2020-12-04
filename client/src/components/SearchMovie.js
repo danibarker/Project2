@@ -26,7 +26,7 @@ export default function SearchMovie({ setPage, setMovie }) {
             {results.map((movie) => (
                 <li onClick={async () => {
                     const id = await addMovie(movie.id, movie.title)
-                    setMovie({ title: movie.title, id: id })
+                    setMovie({ tmdb: movie.id, title: movie.title, id: id })
                     setPage("MovieInfo")
                 }
                 }>{movie.title}</li>

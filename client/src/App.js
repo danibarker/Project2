@@ -12,7 +12,7 @@ import Thanks from "./components/Thanks";
 import Admin from './components/Admin'
 export default function App() {
     let [currentPage, setCurrentPage] = useState("Navigation");
-    let [selectedMovie, setSelectedMovie] = useState({title: 'The Lion King', id:'5fc1e881f7d9654d5c99ad9d'});
+    let [selectedMovie, setSelectedMovie] = useState({title: 'The Lion King', id:'5fc1e881f7d9654d5c99ad9d', tmdb:""});
     let [resourceList, setResourceList] = useState([]);
     const Home = () => {
         console.log(selectedMovie.length);
@@ -82,6 +82,7 @@ export default function App() {
                 return (
                     <AddWarning
                         setCurrentPage={setCurrentPage}
+                        
                         movieTitle={selectedMovie.title}
                         movieID={selectedMovie.id}
                         userID={"5fc68a121262f52c7006d209"}
@@ -100,7 +101,7 @@ export default function App() {
             case "MovieInfo":
                 return (
                     <div>
-                        <ViewMovieInfo setCurrentPage={setCurrentPage} movieTitle={selectedMovie.title} movieID={selectedMovie.id} />
+                        <ViewMovieInfo tmdb={selectedMovie.tmdb} setCurrentPage={setCurrentPage} movieTitle={selectedMovie.title} movieID={selectedMovie.id} />
                     </div>
                 );
 
@@ -119,6 +120,7 @@ export default function App() {
     };
     return (
         <>
+            
             <NavBar setCurrentPage={setCurrentPage} />
             <Home />
         </>

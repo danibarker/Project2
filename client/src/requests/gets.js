@@ -41,7 +41,12 @@ export async function searchTMDB(searchValue) {
     }
     return suggestions;
 }
-
+export async function getTMDB(tmdb) {
+    console.log(tmdb)
+    const data = await fetch(serverURL + "/tmdb/getMovie?tmdb=" + tmdb)
+    const movie = await data.json();
+    return movie
+}
 export async function getPopular() {
     const data = await fetch(serverURL + "/tmdb/popularMovies");
 

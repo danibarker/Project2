@@ -34,7 +34,7 @@ function MovieList({ setMovie, setPage }) {
               <img
                 onClick={async () => {
                   const id = await addMovie(results.id, results.title);
-                  setMovie({ title: results.title, id: id });
+                            setMovie({ tmdb: results.id, title: results.title, id: id })
                   setPage("MovieInfo");
                 }}
                 src={

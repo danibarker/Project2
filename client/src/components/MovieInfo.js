@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../css/App.css";
-import { getWarnings } from "../requests/gets";
+import { getWarnings, getTMDB } from "../requests/gets";
 
 import { getAllResource } from "../requests/gets";
 function average(nums) {
   return nums.reduce((a, b) => a + b) / nums.length;
 }
-export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
+export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitle }) {
   const [warnings, setWarnings] = useState([]);
   const [warningModelData, setWarningModelData] = useState();
-
+    const [movieDesc, setMovieDesc] = useState();
   const findInfoFromID = (type, id, attr) => {
     for (let item of warningModelData[type]) {
       if (item._id === id) {
@@ -29,7 +29,12 @@ export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
       types: types,
       severities: severities,
     });
-  };
+    };
+    const getDescription = async () => {
+        const desc = await getTMDB(tmdb);
+        console.log(desc)
+        setMovieDesc(desc.overview);
+    }
   const getWarningData = async () => {
     const warningData = await getWarnings(movieID);
     setWarnings(warningData);
@@ -40,7 +45,8 @@ export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
   useEffect(() => {
     const getData = async () => {
       await getWarningData();
-      await getWarningModelData();
+        await getWarningModelData();
+        await getDescription()
     };
     getData();
   }, []);
@@ -103,8 +109,9 @@ export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
 
   return (
     <>
-      <div className="collapsible-tables pageContainer threeQuartersPageContainer">
-        <h2>{movieTitle}</h2>
+          <div className="collapsible-tables pageContainer threeQuartersPageContainer">
+             
+        <h2>{movieTitle}</h2> <div style={{ right:"60%", top: "20%", marginBottom:"10px" }} id="movieDesc">{movieDesc}</div>
         <h3>Warnings:</h3>
         <table border="2">
           <thead>
