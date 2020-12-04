@@ -47,7 +47,6 @@ function MovieList({ setMovie, setPage }) {
           </Box>
         ))}
           </div>
-          <div onClick={() => {setPage('Admin')}}>Admin Page </div>
     </Box>
   );
 }
