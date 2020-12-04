@@ -23,13 +23,13 @@ export default function SearchMovie({ setPage, setMovie }) {
                 }}
                 placeholder="Search"
             />
-            {results.map((movie) => (
-                <li onClick={async () => {
-                    const id = await addMovie(movie.id, movie.title)
-                    setMovie({ tmdb: movie.id, title: movie.title, id: id })
+            {results.map((result) => (
+                <li key={result.id} onClick={async () => {
+                    const id = await addMovie(result.id, result.title)
+                    setMovie({ tmdb: result.id, title: result.title, id: id })
                     setPage("MovieInfo")
                 }
-                }>{movie.title}</li>
+                }>{result.title} ({result.release_date.split('-')[0]})</li>
             ))}
         </div>
     );

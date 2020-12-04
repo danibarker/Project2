@@ -32,7 +32,7 @@ export async function searchTMDB(searchValue) {
         if (result.results) {
             result.results.forEach((movie) => {
                 if (suggestions.length < 6) {
-                    suggestions.push({ title: movie.original_title, id: movie.id });
+                    suggestions.push({ release_date: movie.release_date, title: movie.original_title, id: movie.id });
                 }
             });
         }

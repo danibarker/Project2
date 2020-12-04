@@ -123,8 +123,8 @@ export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitl
             </tr>
           </thead>
           <tbody>
-            {warningAverages.map((warning) => (
-              <tr>
+                      {warningAverages.map((warning) => (
+                          <tr key={warningAverages.indexOf(warning)}>
                 <td data-title="Category">{warning.category}</td>
                 <td data-title="Severity">{warningLabelsfromValues.severities[warning.severity]}</td>
                 <td data-title="Frequency">{warningLabelsfromValues.frequencies[warning.frequency]}</td>

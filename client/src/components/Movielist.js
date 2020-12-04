@@ -20,11 +20,11 @@ function MovieList({ setMovie, setPage }) {
     <Box flexWrap="wrap" display="flex">
       <div className="MovList">
         {items.map((results) => (
-          <Box id="BoxStyle">
+          <Box  key={results.title} id="BoxStyle">
             <div>
               <div className="container">
                 <div className="vertical-center">
-                  <h4 key={results.title}>
+                  <h4>
                     <div onClick={() => setMovie(results.title)}>
                       {results.title}
                     </div>
