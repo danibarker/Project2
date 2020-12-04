@@ -68,7 +68,7 @@ export async function addMovie(tmdbID, movieName) {
     const res = await getMovie(tmdbID);
     return res._id;
   } catch {
-    const response = fetch("http://localhost:8000/api/movie/create", {
+      const response = fetch(serverURL+"/api/movie/create", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: movieName, tmdb: tmdbID }),
