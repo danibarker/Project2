@@ -1,7 +1,7 @@
 import { getMovie } from "./gets";
 
-//const serverURL = "http://localhost:8000"; // comment this line for npm run build
- const serverURL = '' // comment this line for npm run start
+const serverURL = "http://localhost:8000"; // comment this line for npm run build
+ //const serverURL = '' // comment this line for npm run start
 export async function createNewWarning(warnings) {
   for (let warning of warnings) {
     fetch(serverURL + "/api/warning/create", {
