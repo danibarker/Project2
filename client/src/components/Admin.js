@@ -1,19 +1,25 @@
-    import React, { useState, useEffect } from "react";
-import { addResource, removeResource } from "../requests/posts";
+import React, { useState, useEffect } from "react";
+import { addResource, removeResource, removeUser } from "../requests/posts";
 import { getAllResource } from "../requests/gets";
 
-
 export default ({ setCurrentPage }) => {
-  const [adminType, setAdminType] = useState("Category", "Frequency", "Type", "Severity");
+  const [adminType, setAdminType] = useState(
+    "Category",
+    "Frequency",
+    "Type",
+    "Severity"
+  );
   let pageToShow;
-  if (adminType == 'Category') {
-    pageToShow = <Category />
-  }  else if (adminType == 'Frequency') {
-    pageToShow = <Frequency />
-  } else if (adminType == 'Type') {
-    pageToShow = <Type />
-  } else if (adminType == 'Severity') {
-    pageToShow = <Severity />
+  if (adminType == "Category") {
+    pageToShow = <Category />;
+  } else if (adminType == "Frequency") {
+    pageToShow = <Frequency />;
+  } else if (adminType == "Type") {
+    pageToShow = <Type />;
+  } else if (adminType == "Severity") {
+    pageToShow = <Severity />;
+  } else {
+    pageToShow = <User />;
   }
   return (
     <div>
@@ -26,6 +32,7 @@ export default ({ setCurrentPage }) => {
         <option>Frequency</option>
         <option>Type</option>
         <option>Severity</option>
+        <option>User</option>
       </select>
       {pageToShow}
     </div>
@@ -35,7 +42,7 @@ export default ({ setCurrentPage }) => {
 const Category = () => {
   const [categories, setCategories] = useState();
   const [newCategory, setNewCategory] = useState();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -50,37 +57,48 @@ const Category = () => {
 
   const createNewCategory = async () => {
     setLoading(true);
-    await addResource("category", { title: newCategory});
+    await addResource("category", { title: newCategory });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
   };
 
   const deleteCategory = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("category", { title: deleteTitle});
+    await removeResource("category", { title: deleteTitle });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
-  }
+  };
   if (loading) {
-    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    return (
+      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    );
   }
   if (!categories) {
     return <h1>Loading, please wait....</h1>;
   }
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <ul>
-        <div>
+        <div className="adminList">
           {categories.map((category) => (
-            <li>{category.title} <button onClick={() => deleteCategory(category.title)} class="deletebtn"> Remove </button></li>
+            <li>
+              {category.title}{" "}
+              <button
+                onClick={() => deleteCategory(category.title)}
+                className="deletebtn"
+              >
+                {" "}
+                Remove{" "}
+              </button>
+            </li>
           ))}
         </div>
       </ul>
-      <div>
+      <div className="adminSubmit">
         <h1>Category</h1>
         <h2>Add</h2>
         <input
@@ -89,13 +107,13 @@ const Category = () => {
           }}
           placeholder="New Category Title"
         />
-        <button onClick={createNewCategory} class="submitbtn">Submit</button>
+        <button onClick={createNewCategory} className="submitbtn">
+          Submit
+        </button>
       </div>
     </div>
   );
-
 };
-
 
 // Adding Frequencies
 
@@ -103,7 +121,7 @@ const Frequency = () => {
   const [frequencies, setFrequencies] = useState();
   const [newFrequency, setNewFrequency] = useState();
   const [newValue, setNewValue] = useState();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -118,37 +136,48 @@ const Frequency = () => {
 
   const createNewFrequency = async () => {
     setLoading(true);
-    await addResource("frequency", { title: newFrequency, value: newValue});
+    await addResource("frequency", { title: newFrequency, value: newValue });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
   };
 
   const deleteFrequency = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("frequency", { title: deleteTitle});
+    await removeResource("frequency", { title: deleteTitle });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
-  }
+  };
   if (loading) {
-    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    return (
+      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    );
   }
   if (!frequencies) {
     return <h1>Loading, please wait....</h1>;
   }
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <ul>
-        <div>
+        <div className="adminList">
           {frequencies.map((frequency) => (
-            <li>{frequency.title} <button onClick={() => deleteFrequency(frequency.title)} class="deletebtn"> Remove </button></li>
+            <li>
+              {frequency.title}{" "}
+              <button
+                onClick={() => deleteFrequency(frequency.title)}
+                className="deletebtn"
+              >
+                {" "}
+                Remove{" "}
+              </button>
+            </li>
           ))}
         </div>
       </ul>
-      <div>
+      <div className="adminSubmit">
         <h1>Frequency</h1>
         <h2>Add</h2>
         <input
@@ -164,14 +193,13 @@ const Frequency = () => {
           placeholder="New Frequency Value"
         />
 
-
-        <button onClick={createNewFrequency} class="submitbtn">Submit</button>
+        <button onClick={createNewFrequency} className="submitbtn">
+          Submit
+        </button>
       </div>
     </div>
   );
-
 };
-
 
 // Adding Type
 
@@ -179,7 +207,7 @@ const Type = () => {
   const [types, setTypes] = useState();
   const [newType, setNewType] = useState();
   const [newValue, setNewValue] = useState();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -194,37 +222,48 @@ const Type = () => {
 
   const createNewType = async () => {
     setLoading(true);
-    await addResource("type", { title: newType, value: newValue});
+    await addResource("type", { title: newType, value: newValue });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
   };
 
   const deleteType = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("type", { title: deleteTitle});
+    await removeResource("type", { title: deleteTitle });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
-  }
+  };
   if (loading) {
-    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    return (
+      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    );
   }
   if (!types) {
     return <h1>Loading, please wait....</h1>;
   }
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <ul>
-        <div>
+        <div className="adminList">
           {types.map((type) => (
-            <li>{type.title} <button onClick={() => deleteType(type.title)} class="deletebtn"> Remove </button></li>
+            <li>
+              {type.title}{" "}
+              <button
+                onClick={() => deleteType(type.title)}
+                className="deletebtn"
+              >
+                {" "}
+                Remove{" "}
+              </button>
+            </li>
           ))}
         </div>
       </ul>
-      <div>
+      <div className="adminSubmit">
         <h1>Type</h1>
         <h2>Add</h2>
         <input
@@ -240,21 +279,56 @@ const Type = () => {
           placeholder="New Type Value"
         />
 
-
-        <button onClick={createNewType} class="submitbtn">Submit</button>
+        <button onClick={createNewType} className="submitbtn">
+          Submit
+        </button>
       </div>
     </div>
   );
-
 };
 
 // Adding Severity
+const User = () => {
+  const [selectedUser, setSelectedUser] = useState();
+  const [deleted, setDeleted] = useState();
 
+  return (
+    <div>
+      <input
+        placeholder="username"
+        onChange={(e) => {
+          setSelectedUser(e.target.value);
+        }}
+      />
+      <button
+        onClick={async () => {
+          try {
+            let response = await removeUser(selectedUser);
+            if (response.deletedCount) {
+              setDeleted(`Successful deletion of ${selectedUser}`);
+            } else {
+              setDeleted(
+                "Sorry, could not find user, check the name"
+                
+              );
+            }
+          } catch (e) {
+            setDeleted(e)
+          }
+        }}
+        className="btn btn-danger"
+      >
+        Delete
+      </button>
+      <div>{deleted}</div>
+    </div>
+  );
+};
 const Severity = () => {
   const [severities, setSeverities] = useState();
   const [newSeverity, setNewSeverity] = useState();
   const [newValue, setNewValue] = useState();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getData = async () => {
       await getPageData();
@@ -269,37 +343,48 @@ const Severity = () => {
 
   const createNewSeverity = async () => {
     setLoading(true);
-    await addResource("severity", { title: newSeverity, value: newValue});
+    await addResource("severity", { title: newSeverity, value: newValue });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
   };
 
   const deleteSeverity = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("severity", { title: deleteTitle});
+    await removeResource("severity", { title: deleteTitle });
     setTimeout(() => {
       getPageData();
-      setLoading(false)
+      setLoading(false);
     }, 2000);
-  }
+  };
   if (loading) {
-    return <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    return (
+      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+    );
   }
   if (!severities) {
     return <h1>Loading, please wait....</h1>;
   }
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <ul>
-        <div>
+        <div className="adminList">
           {severities.map((severity) => (
-            <li>{severity.title} <button onClick={() => deleteSeverity(severity.title)} class="deletebtn"> Remove </button></li>
+            <li>
+              {severity.title}{" "}
+              <button
+                onClick={() => deleteSeverity(severity.title)}
+                className="deletebtn"
+              >
+                {" "}
+                Remove{" "}
+              </button>
+            </li>
           ))}
         </div>
       </ul>
-      <div>
+      <div className="adminSubmit">
         <h1>Severity</h1>
         <h2>Add</h2>
         <input
@@ -315,10 +400,10 @@ const Severity = () => {
           placeholder="New Severity Value"
         />
 
-
-        <button onClick={createNewSeverity} class="submitbtn">Submit</button>
+        <button onClick={createNewSeverity} className="submitbtn">
+          Submit
+        </button>
       </div>
     </div>
   );
-
 };

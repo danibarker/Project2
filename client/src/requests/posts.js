@@ -61,7 +61,21 @@ export async function addUser(newUsername, newEmail, newPassword) {
     }),
   });
 }
-
+export async function removeUser(username) {
+  try {
+    let response = await fetch(serverURL + "/api/user/delete", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+      }),
+    });
+    let data = response.json()
+    return data
+  } catch (error) {
+    return error
+  }
+}
 export async function addMovie(tmdbID, movieName) {
   // check if movie is in database already
   try {

@@ -24,7 +24,7 @@ export default function App() {
                         <Thanks setCurrentPage={setCurrentPage} />
                     </>
                 );
-            case "Unused":
+            case "Navigation":
                 return (
                     <div>
                         <button
@@ -89,7 +89,7 @@ export default function App() {
                     />
                 );
 
-            case "Navigation":
+            case "SearchMovie":
                 return (
                     <div className="App">
                         <SearchBar setPage={setCurrentPage} setMovie={setSelectedMovie} />
