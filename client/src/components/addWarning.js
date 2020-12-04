@@ -51,7 +51,7 @@ export default function AddWarning({
     }
     return (
         <div className="pageContainer fullPageContainer">
-            <div>Add a warning to {movieTitle}</div>
+            <div><h2>Add a warning to {movieTitle}</h2></div>
             <br></br>
             <div className="ptther">
                 <select
@@ -108,11 +108,10 @@ export default function AddWarning({
                         </option>
                     ))}
                 </select>
-                <label htmlFor="commentBox">Details:</label>
+                
                 <textarea
                     id="commentBox"
-                    rows="10"
-                    cols="80"
+                    placeholder="Additional comments"
                     onChange={(event) => {
                         setComment(event.target.value);
                     }}
@@ -120,7 +119,7 @@ export default function AddWarning({
 
                 <br />
 
-                <button
+                <button className="btn btn-success"
                     onClick={() => {
                         if (category && frequency && type && severity) {
                             setUnchosenError(false);
@@ -153,13 +152,13 @@ export default function AddWarning({
 
             <br />
             <div className="part">
-                <button
+                <button className = "btn btn-primary"
                     onClick={() => {
                         createNewWarning(warnings);
                         setCurrentPage("Thanks");
                     }}
                 >
-                    Send Data
+                    Send All Warnings
                 </button>
             </div>
             <br />

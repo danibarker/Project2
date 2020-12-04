@@ -1,5 +1,8 @@
-* {
+/* * {
     box-sizing: border-box;
+} */
+body {
+  margin: 0;
 }
 a {
   text-decoration: none;
@@ -17,8 +20,22 @@ a {
 
 .ptther {
   display: flex;
+  flex-wrap: wrap;
   margin-left:10px;
 
+}
+.ptther button {
+  margin-top: 10px;
+}
+.ptther * {
+  margin:2px;
+}
+.ptther textarea {
+  width: 404px;
+  resize:none;
+}
+.ptther select {
+  width: 200px;
 }
 .part {
   display:block;
@@ -149,7 +166,12 @@ ul {
 }
 .threeQuartersPageContainer {
   
+    
     height: 60%;
+    display: flex;
+    flex-direction: column;
+    /* align-content: end; */
+    justify-content: space-around;
 }
 .halfContainer {
     height: 40%
@@ -158,7 +180,6 @@ ul {
 
 .warningPageContainer-Bottom {
   bottom: 0;
-  height: 15%;
 
 }
 
@@ -174,7 +195,11 @@ ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  margin-top: 40px;
+}
+#BoxStyle h4 {
+  font-size: 1rem;
+  margin-bottom: 30px;
 }
 
 ul {
@@ -199,8 +224,15 @@ ul {
   width: 200px;
   margin: 10px;
 }
+@media only screen and (max-width: 500px) {
+  .MuiBox-root-2 {
+    font-size: x-small;
+  }
+}
 @media only screen and (max-width: 600px) {
-
+    .threeQuartersPageContainer {
+      justify-content:start;
+        }
     /* Force table to not be like tables anymore */
     .collapsible-tables table,
     .collapsible-tables thead,
@@ -252,4 +284,25 @@ ul {
         .collapsible-tables td:before {
             content: attr(data-title);
         }
+
+        .MovList img {
+          width: 100px;
+        }
+        .MovList #BoxStyle {
+          width: 100px
+        }
+
+        #BoxStyle h4 {
+          font-size: small;
+          
+        }
+
+        
+}
+
+th {
+  width:200px;
+}
+table {
+  margin: 12px;
 }

@@ -24,11 +24,11 @@ function MovieList({ setMovie, setPage }) {
             <div>
               <div className="container">
                 <div className="vertical-center">
-                  <h1 key={results.title}>
+                  <h4 key={results.title}>
                     <div onClick={() => setMovie(results.title)}>
                       {results.title}
                     </div>
-                  </h1>
+                  </h4>
                 </div>
               </div>
               <img
@@ -42,7 +42,6 @@ function MovieList({ setMovie, setPage }) {
                   results.poster_path
                 }
                 alt="no "
-                style={{ width: "200px" }}
               />
             </div>
           </Box>

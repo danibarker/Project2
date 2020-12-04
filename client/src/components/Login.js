@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/App.css";
 import {Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row} from "reactstrap";
-export default function Login() {
+export default function Login({setCurrentPage}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   
@@ -43,37 +43,33 @@ export default function Login() {
                 <Card className="p-2">
                   <CardBody>
                     <Form>
-                      <div class="row" className="mb-2 pageheading">
-                        <div
-                          class="col-sm-12 btn btn-primary"
-                          style={{ marginLeft: "50px" }}
-                        >
-                          Login
-                        </div>
-                      </div>
+                      
                       <div
                         className="totheRight"
-                        style={{ marginLeft: "50px" }}
+                        style={{  }}
                       >
                         <InputGroup className="mb-3">
                           <Input
                             type="text"
-                            onChange={this.Email}
+                            onChange={(e)=>{changeUsername(e.target.value)}}
                             placeholder="Enter Email"
                           />
                         </InputGroup>
                         <InputGroup className="mb-4">
                           <Input
                             type="password"
-                            onChange={this.Password}
+                            onChange={(e)=>{changePassword(e.target.value)}}
                             placeholder="Enter Password"
                           />
                         </InputGroup>
-                        <Button onClick={this.login} color="success" block>
+                        <Button onClick={login} color="success" block>
                           Login
                         </Button>
                       </div>
                     </Form>
+                    <br />
+                    <button onClick={()=>{setCurrentPage('SignUp')}}>Create an Account</button>
+                    
                   </CardBody>
                 </Card>
               </CardGroup>

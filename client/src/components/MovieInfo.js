@@ -106,7 +106,7 @@ export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
       <div className="collapsible-tables pageContainer threeQuartersPageContainer">
         <h2>{movieTitle}</h2>
         <h3>Warnings:</h3>
-        <table>
+        <table border="2">
           <thead>
             <tr>
               <th>Category</th>
@@ -129,7 +129,7 @@ export default function ViewMovieInfo({ setCurrentPage, movieID, movieTitle }) {
       </div>
 
       <div className="pageContainer warningPageContainer-Bottom">
-        <button onClick={() => {
+        <button className="btn btn-success" onClick={() => {
           setCurrentPage('AddWarning')
         }}>Add warning</button>
       </div>

@@ -105,7 +105,7 @@ export default function App() {
                 );
 
             case "SignIn":
-                return <Login />
+                return <Login setCurrentPage={setCurrentPage}/>
                 
             case "SignUp":
                 return <SignUp />;
