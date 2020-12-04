@@ -89,7 +89,7 @@ const Category = () => {
           }}
           placeholder="New Category Title"
         />
-        <button onClick={createNewCategory}>Submit</button>
+        <button onClick={createNewCategory} class="submitbtn">Submit</button>
       </div>
     </div>
   );
@@ -102,6 +102,7 @@ const Category = () => {
 const Frequency = () => {
   const [frequencies, setFrequencies] = useState();
   const [newFrequency, setNewFrequency] = useState();
+  const [newValue, setNewValue] = useState();
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
@@ -117,7 +118,7 @@ const Frequency = () => {
 
   const createNewFrequency = async () => {
     setLoading(true);
-    await addResource("frequency", { title: newFrequency, value: newFrequency});
+    await addResource("frequency", { title: newFrequency, value: newValue});
     setTimeout(() => {
       getPageData();
       setLoading(false)
@@ -143,7 +144,7 @@ const Frequency = () => {
       <ul>
         <div>
           {frequencies.map((frequency) => (
-            <li>{frequency.title} <button onClick={() => deleteFrequency(frequency.title)}> Remove </button></li>
+            <li>{frequency.title} <button onClick={() => deleteFrequency(frequency.title)} class="deletebtn"> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -156,7 +157,15 @@ const Frequency = () => {
           }}
           placeholder="New Frequency Title"
         />
-        <button onClick={createNewFrequency}>Submit</button>
+        <input
+          onChange={(e) => {
+            setNewValue(e.target.value);
+          }}
+          placeholder="New Frequency Value"
+        />
+
+
+        <button onClick={createNewFrequency} class="submitbtn">Submit</button>
       </div>
     </div>
   );
@@ -169,6 +178,7 @@ const Frequency = () => {
 const Type = () => {
   const [types, setTypes] = useState();
   const [newType, setNewType] = useState();
+  const [newValue, setNewValue] = useState();
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
@@ -184,7 +194,7 @@ const Type = () => {
 
   const createNewType = async () => {
     setLoading(true);
-    await addResource("type", { title: newType, value:newType});
+    await addResource("type", { title: newType, value: newValue});
     setTimeout(() => {
       getPageData();
       setLoading(false)
@@ -210,7 +220,7 @@ const Type = () => {
       <ul>
         <div>
           {types.map((type) => (
-            <li>{type.title} <button onClick={() => deleteType(type.title)}> Remove </button></li>
+            <li>{type.title} <button onClick={() => deleteType(type.title)} class="deletebtn"> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -223,19 +233,27 @@ const Type = () => {
           }}
           placeholder="New Type Title"
         />
-        <button onClick={createNewType}>Submit</button>
+        <input
+          onChange={(e) => {
+            setNewValue(e.target.value);
+          }}
+          placeholder="New Type Value"
+        />
+
+
+        <button onClick={createNewType} class="submitbtn">Submit</button>
       </div>
     </div>
   );
 
 };
 
-
 // Adding Severity
 
 const Severity = () => {
   const [severities, setSeverities] = useState();
   const [newSeverity, setNewSeverity] = useState();
+  const [newValue, setNewValue] = useState();
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const getData = async () => {
@@ -251,7 +269,7 @@ const Severity = () => {
 
   const createNewSeverity = async () => {
     setLoading(true);
-    await addResource("severity", { title: newSeverity, value: newSeverity});
+    await addResource("severity", { title: newSeverity, value: newValue});
     setTimeout(() => {
       getPageData();
       setLoading(false)
@@ -277,7 +295,7 @@ const Severity = () => {
       <ul>
         <div>
           {severities.map((severity) => (
-            <li>{severity.title} <button onClick={() => deleteSeverity(severity.title)}> Remove </button></li>
+            <li>{severity.title} <button onClick={() => deleteSeverity(severity.title)} class="deletebtn"> Remove </button></li>
           ))}
         </div>
       </ul>
@@ -290,7 +308,15 @@ const Severity = () => {
           }}
           placeholder="New Severity Title"
         />
-        <button onClick={createNewSeverity}>Submit</button>
+        <input
+          onChange={(e) => {
+            setNewValue(e.target.value);
+          }}
+          placeholder="New Severity Value"
+        />
+
+
+        <button onClick={createNewSeverity} class="submitbtn">Submit</button>
       </div>
     </div>
   );
