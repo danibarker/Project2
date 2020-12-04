@@ -7,5 +7,5 @@ export default function Thanks({ setCurrentPage }) {
             setCurrentPage("Navigation");
         }, 2000);
     });
-    return <div>Thank you for your contribution</div>;
+    return <div><h1>Thank you for your contribution</h1></div>;
 }
