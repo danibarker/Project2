@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-
+const auth = require("../middleware/auth");
 // Require controller modules.
 let movie_controller = require('../controllers/movieController');
 let user_controller = require('../controllers/userController');
@@ -19,10 +19,10 @@ let severity_controller = require('../controllers/severityController');
 router.post('/movie/create', movie_controller.movie_create_post);
 
 // POST request to delete Movie.
-router.post('/movie/delete', movie_controller.movie_delete_post);
+router.post('/movie/delete', auth, movie_controller.movie_delete_post);
 
 // POST request to update Movie.
-router.post('/movie/update', movie_controller.movie_update_post);
+router.post('/movie/update', auth, movie_controller.movie_update_post);
 
 // GET request for one Movie.
 router.get('/movie/:tmdb', movie_controller.movie_detail);
@@ -38,29 +38,31 @@ router.get('/movies', movie_controller.movie_list);
 router.post('/user/create', user_controller.user_create_post);
 
 // POST request to delete user.
-router.post('/user/delete', user_controller.user_delete_post);
+router.post('/user/delete', auth, user_controller.user_delete_post);
 
 // POST request to update user.
-router.post('/user/update', user_controller.user_update_post);
+router.post('/user/update', auth, user_controller.user_update_post);
 
 // GET request for one user.
-router.get('/user/:id', user_controller.user_detail);
+router.get('/user/:id', auth, user_controller.user_detail);
 
 // GET request for list of all users.
-router.get('/users', user_controller.user_list);
+router.get('/users', auth, user_controller.user_list);
 
+// POST request for login
+router.post('/user/login', user_controller.user_login);
 // ***********************************
 //  WARNING ROUTES
 // ***********************************
 
 //POST request for creating warning.
-router.post('/warning/create', warning_controller.warning_create_post);
+router.post('/warning/create', auth, warning_controller.warning_create_post);
 
 // POST request to delete warning.
-router.post('/warning/delete', warning_controller.warning_delete_post);
+router.post('/warning/delete', auth, warning_controller.warning_delete_post);
 
 // POST request to update warning.
-router.post('/warning/update', warning_controller.warning_update_post);
+router.post('/warning/update', auth warning_controller.warning_update_post);
 
 // GET request for one warning.
 router.get('/warning/:id', warning_controller.warning_detail);
