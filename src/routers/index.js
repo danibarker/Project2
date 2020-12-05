@@ -62,7 +62,7 @@ router.post('/warning/create', auth, warning_controller.warning_create_post);
 router.post('/warning/delete', auth, warning_controller.warning_delete_post);
 
 // POST request to update warning.
-router.post('/warning/update', auth warning_controller.warning_update_post);
+router.post('/warning/update', auth, warning_controller.warning_update_post);
 
 // GET request for one warning.
 router.get('/warning/:id', warning_controller.warning_detail);
