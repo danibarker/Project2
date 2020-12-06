@@ -93,3 +93,14 @@ export async function addMovie(tmdbID, movieName) {
     return addedMovie._id;
   }
 }
+
+export async function checkLogin(username, password) {
+  fetch(serverURL + "/api/user/login", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  });
+}
