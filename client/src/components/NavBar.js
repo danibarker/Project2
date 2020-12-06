@@ -36,8 +36,8 @@ export default function NavBar({ setCurrentPage }) {
                 onClick={() => {
                   setCurrentPage("SignIn");
                 }}
-              >
-                Sign in
+                      >
+                          {!localStorage.getItem('token') ? "Sign in" : "My Account"}
               </button>
             
           </div>

@@ -75,13 +75,13 @@ router.get('/warnings', warning_controller.warning_list);
 // ***********************************
 
 // POST request for creating category. 
-router.post('/category/create', category_controller.category_create_post);
+router.post('/category/create', auth, category_controller.category_create_post);
 
 // POST request to delete category.
-router.post('/category/delete', category_controller.category_delete_post);
+router.post('/category/delete', auth, category_controller.category_delete_post);
 
 // POST request to update category.
-router.post('/category/update', category_controller.category_update_post);
+router.post('/category/update', auth, category_controller.category_update_post);
 
 // GET request for one category.
 router.get('/category/:title', category_controller.category_detail);
@@ -94,13 +94,13 @@ router.get('/categories', category_controller.category_list);
 // ***********************************
 
 // POST request for creating frequency. 
-router.post('/frequency/create', frequency_controller.frequency_create_post);
+router.post('/frequency/create', auth, frequency_controller.frequency_create_post);
 
 // POST request to delete frequency.
-router.post('/frequency/delete', frequency_controller.frequency_delete_post);
+router.post('/frequency/delete', auth, frequency_controller.frequency_delete_post);
 
 // POST request to update frequency.
-router.post('/frequency/update', frequency_controller.frequency_update_post);
+router.post('/frequency/update', auth, frequency_controller.frequency_update_post);
 
 // GET request for one frequency.
 router.get('/frequency/:title', frequency_controller.frequency_detail);
@@ -113,13 +113,13 @@ router.get('/frequencies', frequency_controller.frequency_list);
 // ***********************************
 
 // POST request for creating type. 
-router.post('/type/create', type_controller.type_create_post);
+router.post('/type/create', auth, type_controller.type_create_post);
 
 // POST request to delete type.
-router.post('/type/delete', type_controller.type_delete_post);
+router.post('/type/delete', auth, type_controller.type_delete_post);
 
 // POST request to update type.
-router.post('/type/update', type_controller.type_update_post);
+router.post('/type/update', auth, type_controller.type_update_post);
 
 // GET request for one type.
 router.get('/type/:title', type_controller.type_detail);
@@ -132,13 +132,13 @@ router.get('/types', type_controller.type_list);
 // ***********************************
 
 // POST request for creating severity. 
-router.post('/severity/create', severity_controller.severity_create_post);
+router.post('/severity/create', auth, severity_controller.severity_create_post);
 
 // POST request to delete severity.
-router.post('/severity/delete', severity_controller.severity_delete_post);
+router.post('/severity/delete', auth, severity_controller.severity_delete_post);
 
 // POST request to update severity.
-router.post('/severity/update', severity_controller.severity_update_post);
+router.post('/severity/update', auth, severity_controller.severity_update_post);
 
 // GET request for one severity.
 router.get('/severity/:title', severity_controller.severity_detail);

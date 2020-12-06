@@ -135,10 +135,13 @@ export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitl
         </table>
       </div>
 
-      <div className="pageContainer warningPageContainer-Bottom">
-        <button className="btn btn-success" onClick={() => {
-          setCurrentPage('AddWarning')
-        }}>Add warning</button>
+          <div className="pageContainer warningPageContainer-Bottom">
+              {localStorage.getItem('token') ? (
+                  <button className="btn btn-success" onClick={() => {
+                      setCurrentPage('AddWarning')
+                  }}>Add warning</button>) : (<button className="btn btn-danger" onClick={() => {
+                      setCurrentPage('SignIn')
+                  }}>Log In To Contribute</button>)}
       </div>
     </>
   );
