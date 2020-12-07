@@ -13,11 +13,11 @@ export default () => {
   const token = localStorage.getItem('token')
   if (adminType == "Category") {
     pageToShow = <Category token={token}/>;
-  } else if (adminType == "Frequency") {
+  } else if (adminType === "Frequency") {
     pageToShow = <Frequency token={token}/>;
-  } else if (adminType == "Type") {
+  } else if (adminType === "Type") {
     pageToShow = <Type token={token}/>;
-  } else if (adminType == "Severity") {
+  } else if (adminType === "Severity") {
     pageToShow = <Severity token={token}/>;
   } else {
     pageToShow = <User token={token} />;
@@ -75,7 +75,7 @@ const Category = ({ token }) => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!categories) {
@@ -154,7 +154,7 @@ const Frequency = ({ token }) => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!frequencies) {
@@ -240,7 +240,7 @@ const Type = ({token}) => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!types) {
@@ -361,7 +361,7 @@ const Severity = ({ token }) => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!severities) {

@@ -154,7 +154,7 @@ export default function AddWarning({
             <div className="part">
                 <button className = "btn btn-primary"
                     onClick={() => {
-                        createNewWarning(warnings);
+                        createNewWarning(warnings, localStorage.getItem('token'));
                         setCurrentPage("Thanks");
                     }}
                 >

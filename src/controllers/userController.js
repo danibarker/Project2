@@ -45,17 +45,17 @@ exports.user_create_post = async function (req, res) {
 
   // add new record to database
   // result is the new record
-  await User.create(newRecord)
-    .then((result) => {
-      debug(`Success: severity created: ${newRecord}`); // success
-      debug(`Create user response: ${result}`);
-      res.status(200).json(result);
-    })
-    .catch((error) => {
+    try {
+        let response = await User.create(newRecord)
+        
+
+        res.status(200).json(response.toJSON());
+
+    } catch(error) {
       debug(`Error: unable to create user: ${newUser}`); // failure
       debug(`Error: user error: ${error}`);
       res.status(500).json(error);
-    });
+    };
 };
 
 exports.user_login = async function (req, res) {
@@ -67,7 +67,7 @@ exports.user_login = async function (req, res) {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (err) {
-    res.status(400).send(err.message);
+      res.status(400).send(err.message);
   }
 };
 
@@ -77,7 +77,7 @@ exports.user_logout = async function (req, res) {
         return token.token !== req.token;
     });
     await req.user.save();
-    res.send();
+    res.status(200).send();
 } catch {
     res.status(500).send();
 }

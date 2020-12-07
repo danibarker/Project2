@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchMovie";
 import Movielist from "./components/Movielist";
 import ViewMovieInfo from "./components/MovieInfo";
-import { getAllResource } from "./requests/gets";
 import AddWarning from "./components/AddWarning";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -13,7 +12,6 @@ import Admin from './components/Admin'
 export default function App() {
     let [currentPage, setCurrentPage] = useState("Navigation");
     let [selectedMovie, setSelectedMovie] = useState({title: 'The Lion King', id:'5fc1e881f7d9654d5c99ad9d', tmdb:""});
-    let [resourceList, setResourceList] = useState([]);
     const Home = () => {
         console.log(selectedMovie.length);
 

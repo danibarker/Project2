@@ -1,16 +1,12 @@
 import { getMovie } from "./gets";
 
 const serverURL = "http://localhost:8000"; // comment this line for npm run build
-//const serverURL = '' // comment this line for npm run start
-export async function createNewWarning(warnings, token) {
+ //const serverURL = '' // comment this line for npm run start
+export async function createNewWarning(warnings) {
   for (let warning of warnings) {
-    const headers = new Headers({
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
-    });
-    const request = new Request("api/warning/create", {
-      method: "POST",
-      headers: headers,
+    fetch(serverURL + "/api/warning/create", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         warning: {
           userID: warning.userID,
@@ -22,11 +18,10 @@ export async function createNewWarning(warnings, token) {
         },
       }),
     });
-    fetch(request);
   }
 }
 
-export async function addResource(type, newResource, token) {
+export async function addResource(type, newResource) {
   let data;
   if (type === "category") {
     data = JSON.stringify({ title: newResource.title });
@@ -36,32 +31,23 @@ export async function addResource(type, newResource, token) {
       value: newResource.value,
     });
   }
-  const headers = new Headers({
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json"
-  });
-  const request = new Request("api/warning/create", {
-    method: "POST",
-    headers: headers,
+  fetch(serverURL + `/api/${type}/create`, {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
     body: data,
   });
-  fetch(request);
 }
 
-export async function removeResource(type, newResource, token) {
+export async function removeResource(type, newResource) {
   let data;
 
   data = JSON.stringify({ title: newResource.title });
-  const headers = new Headers({
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json"
-  });
-  const request = new Request(serverURL + `/api/${type}/delete`, {
-    method: "POST",
-    headers: headers,
+
+  fetch(serverURL + `/api/${type}/delete`, {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
     body: data,
   });
-  fetch(request);
 }
 
 export async function addUser(newUsername, newEmail, newPassword) {
@@ -75,24 +61,19 @@ export async function addUser(newUsername, newEmail, newPassword) {
     }),
   });
 }
-export async function removeUser(username, token) {
+export async function removeUser(username) {
   try {
-    const headers = new Headers({
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
-    });
-    const request = new Request(serverURL + `/api/user/delete`, {
-      method: "POST",
-      headers: headers,
+    let response = await fetch(serverURL + "/api/user/delete", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username,
       }),
     });
-    let response = await fetch(request);
-    let data = response.json();
-    return data;
+    let data = response.json()
+    return data
   } catch (error) {
-    return error;
+    return error
   }
 }
 export async function addMovie(tmdbID, movieName) {
@@ -101,7 +82,7 @@ export async function addMovie(tmdbID, movieName) {
     const res = await getMovie(tmdbID);
     return res._id;
   } catch {
-    const response = fetch(serverURL + "/api/movie/create", {
+      const response = fetch(serverURL+"/api/movie/create", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: movieName, tmdb: tmdbID }),
@@ -111,4 +92,15 @@ export async function addMovie(tmdbID, movieName) {
 
     return addedMovie._id;
   }
+}
+
+export async function userLogin(username, password) {
+  fetch(serverURL + "/api/user/login", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  });
 }

@@ -21,7 +21,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
             ></img>
           </div>
           <div style={{display: "flex",justifyContent: "center",width: "75%",margin: "auto"}}>
-            <img
+            <img alt="The Movie Warning Database"
               src={titleImage}
               style={{ width: "90%", height: "auto", margin:"0 5%", maxHeight: "35",maxWidth: "400px" }}
             ></img>
@@ -31,7 +31,6 @@ export default function NavBar({ currentPage, setCurrentPage }) {
     display: "flex",
     justifyContent: "flex-end" }}>
             <button
-              style={{ width: "100%", height: "auto", padding: "0 20% 0 20%" }}
               
             className="btn btn-success" style={{ fontSize: "1.5vw", padding:" 0px 5px"}}
                 onClick={() => {

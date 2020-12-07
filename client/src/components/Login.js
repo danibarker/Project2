@@ -1,36 +1,28 @@
 import React, { useState } from "react";
 import "../css/App.css";
 import {Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row} from "reactstrap";
+import { userLogin } from "../requests/posts";
 export default function Login({setCurrentPage}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  
-
-  const changeUsername = (event) => {
-    setUsername( event.target.value );
+  const [loginFail, setLoginFail]= useState(false)
+  const changeUsername = (username) => {
+    setUsername(username);
   }
-  const changePassword = (event) => {
-    setPassword( event.target.value );
+  const changePassword = (password) => {
+    setPassword(password);
   }
-  const login = ()=> {
-    // debugger;
-    fetch("http://localhost:3000/api/login/", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-      .then((Response) => Response.json())
-      .then((result) => {
-        console.log(result);
-        if (result.Status == "Invalid") alert("Invalid User");
-        else this.props.history.push("/Dashboard");
-      });
+  const login = async ()=> {
+      // debugger;
+      try {
+          let response = await userLogin(username, password)
+          if (response.token) {
+              localStorage.setItem("token",response.token)
+          }
+          setCurrentPage('Navigation')
+      } catch (error) {
+          setLoginFail(error.message)
+      }
   }
 
  
@@ -60,7 +52,8 @@ export default function Login({setCurrentPage}) {
                             type="password"
                             onChange={(e)=>{changePassword(e.target.value)}}
                             placeholder="Enter Password"
-                          />
+                                                /><br /><br />
+                                                {loginFail ? <span style={{ color: "red" }}>{loginFail}</span> : <span></span>}
                         </InputGroup>
                         <Button onClick={login} color="success" block>
                           Login
