@@ -3,14 +3,15 @@ import "../css/App.css";
 import Box from "@material-ui/core/Box";
 import logo from "../images/home.png";
 import titleImage from "../images/title.png";
-export default function NavBar({ setCurrentPage }) {
+export default function NavBar({ currentPage, setCurrentPage }) {
+  const token = localStorage.getItem('token')
   return (
     <>
       <div className="navBar">
-        <Box display="flex" p={1} bgcolor="background.paper">
-          <div style={{width:"10%",margin:"auto"}}>
+        <Box display="flex" p={1} bgcolor="white">
+          <div style={{width: "10%"}}>
             <img
-              style={{ cursor:"pointer", width: "90%", margin:"0 5%"}}
+              style={{ cursor: "pointer",width: "90%",margin: "0px 5%", maxHeight: "35px",maxWidth: "35px"}}
               width="20px"
               src={logo}
               p={1}
@@ -19,29 +20,30 @@ export default function NavBar({ setCurrentPage }) {
               }}
             ></img>
           </div>
-          <div style={{width:"70%"  , margin:"auto" }}>
+          <div style={{display: "flex",justifyContent: "center",width: "75%",margin: "auto"}}>
             <img
               src={titleImage}
-              style={{ width: "90%", height: "auto", margin:"0 5%" }}
+              style={{ width: "90%", height: "auto", margin:"0 5%", maxHeight: "35",maxWidth: "400px" }}
             ></img>
           </div>
           <div style={{width:"10%",
     
     display: "flex",
-    justifyContent: "flex-end"}}>
+    justifyContent: "flex-end" }}>
             <button
               style={{ width: "100%", height: "auto", padding: "0 20% 0 20%" }}
               
-            className="btn btn-success" style={{ fontSize: "2vw", paddingLeft:"5px",paddingRight:"5px",paddingTop:"0px",paddingBottom:"0px"}}
+            className="btn btn-success" style={{ fontSize: "1.5vw", padding:" 0px 5px"}}
                 onClick={() => {
                   setCurrentPage("SignIn");
                 }}
               >
-                Sign in
+              {token ? "My Account" : "Sign In"}
               </button>
             
           </div>
         </Box>
+        <div>{currentPage}</div>
       </div>
     </>
   );

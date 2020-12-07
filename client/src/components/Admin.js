@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { addResource, removeResource, removeUser } from "../requests/posts";
 import { getAllResource } from "../requests/gets";
 
-export default ({ setCurrentPage }) => {
+export default () => {
   const [adminType, setAdminType] = useState(
     "Category",
     "Frequency",
@@ -10,16 +10,17 @@ export default ({ setCurrentPage }) => {
     "Severity"
   );
   let pageToShow;
+  const token = localStorage.getItem('token')
   if (adminType == "Category") {
-    pageToShow = <Category />;
+    pageToShow = <Category token={token}/>;
   } else if (adminType == "Frequency") {
-    pageToShow = <Frequency />;
+    pageToShow = <Frequency token={token}/>;
   } else if (adminType == "Type") {
-    pageToShow = <Type />;
+    pageToShow = <Type token={token}/>;
   } else if (adminType == "Severity") {
-    pageToShow = <Severity />;
+    pageToShow = <Severity token={token}/>;
   } else {
-    pageToShow = <User />;
+    pageToShow = <User token={token} />;
   }
   return (
     <div>
@@ -39,7 +40,7 @@ export default ({ setCurrentPage }) => {
   );
 };
 
-const Category = () => {
+const Category = ({ token }) => {
   const [categories, setCategories] = useState();
   const [newCategory, setNewCategory] = useState();
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ const Category = () => {
 
   const createNewCategory = async () => {
     setLoading(true);
-    await addResource("category", { title: newCategory });
+    await addResource("category", { title: newCategory }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -66,7 +67,7 @@ const Category = () => {
 
   const deleteCategory = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("category", { title: deleteTitle });
+    await removeResource("category", { title: deleteTitle }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -117,7 +118,7 @@ const Category = () => {
 
 // Adding Frequencies
 
-const Frequency = () => {
+const Frequency = ({ token }) => {
   const [frequencies, setFrequencies] = useState();
   const [newFrequency, setNewFrequency] = useState();
   const [newValue, setNewValue] = useState();
@@ -136,7 +137,7 @@ const Frequency = () => {
 
   const createNewFrequency = async () => {
     setLoading(true);
-    await addResource("frequency", { title: newFrequency, value: newValue });
+    await addResource("frequency", { title: newFrequency, value: newValue },token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -145,7 +146,7 @@ const Frequency = () => {
 
   const deleteFrequency = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("frequency", { title: deleteTitle });
+    await removeResource("frequency", { title: deleteTitle }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -203,7 +204,7 @@ const Frequency = () => {
 
 // Adding Type
 
-const Type = () => {
+const Type = ({token}) => {
   const [types, setTypes] = useState();
   const [newType, setNewType] = useState();
   const [newValue, setNewValue] = useState();
@@ -222,7 +223,7 @@ const Type = () => {
 
   const createNewType = async () => {
     setLoading(true);
-    await addResource("type", { title: newType, value: newValue });
+    await addResource("type", { title: newType, value: newValue },token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -231,7 +232,7 @@ const Type = () => {
 
   const deleteType = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("type", { title: deleteTitle });
+    await removeResource("type", { title: deleteTitle }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -288,7 +289,7 @@ const Type = () => {
 };
 
 // Adding Severity
-const User = () => {
+const User = ({ token }) => {
   const [selectedUser, setSelectedUser] = useState();
   const [deleted, setDeleted] = useState();
 
@@ -324,7 +325,7 @@ const User = () => {
     </div>
   );
 };
-const Severity = () => {
+const Severity = ({ token }) => {
   const [severities, setSeverities] = useState();
   const [newSeverity, setNewSeverity] = useState();
   const [newValue, setNewValue] = useState();
@@ -343,7 +344,7 @@ const Severity = () => {
 
   const createNewSeverity = async () => {
     setLoading(true);
-    await addResource("severity", { title: newSeverity, value: newValue });
+    await addResource("severity", { title: newSeverity, value: newValue }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);
@@ -352,7 +353,7 @@ const Severity = () => {
 
   const deleteSeverity = async (deleteTitle) => {
     setLoading(true);
-    await removeResource("severity", { title: deleteTitle });
+    await removeResource("severity", { title: deleteTitle }, token);
     setTimeout(() => {
       getPageData();
       setLoading(false);

@@ -52,7 +52,7 @@ a {
 }
 .navBar {
 /*  width: 100%;*/
-  background-color: rgb(163, 149, 149);
+  /* background-color: rgb(163, 149, 149); */
   color: rgb(15, 15, 15);
   padding: 10px;
   font-weight: bold;
