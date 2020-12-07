@@ -30,26 +30,27 @@ export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitl
       severities: severities,
     });
     };
-    const getDescription = async () => {
-        const desc = await getTMDB(tmdb);
-        console.log(desc)
-        setMovieDesc(desc.overview);
-    }
-  const getWarningData = async () => {
-    const warningData = await getWarnings(movieID);
-    setWarnings(warningData);
-  };
+    
 
   //    const category = findInfoFromID('categories', warning.categoryID, 'title')
 
-  useEffect(() => {
+    useEffect(() => {
+        const getDescription = async () => {
+            const desc = await getTMDB(tmdb);
+            console.log(desc)
+            setMovieDesc(desc.overview);
+        }
+        const getWarningData = async () => {
+            const warningData = await getWarnings(movieID);
+            setWarnings(warningData);
+        };
     const getData = async () => {
       await getWarningData();
         await getWarningModelData();
         await getDescription()
     };
     getData();
-  }, []);
+  }, [movieID,tmdb]);
   
   if (!warningModelData) {
     return <h1>Loading...</h1>;

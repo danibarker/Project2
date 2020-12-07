@@ -10,13 +10,13 @@ export default ({ setCurrentPage }) => {
     "Severity"
   );
   let pageToShow;
-  if (adminType == "Category") {
+  if (adminType === "Category") {
     pageToShow = <Category />;
-  } else if (adminType == "Frequency") {
+  } else if (adminType === "Frequency") {
     pageToShow = <Frequency />;
-  } else if (adminType == "Type") {
+  } else if (adminType === "Type") {
     pageToShow = <Type />;
-  } else if (adminType == "Severity") {
+  } else if (adminType === "Severity") {
     pageToShow = <Severity />;
   } else {
     pageToShow = <User />;
@@ -74,7 +74,7 @@ const Category = () => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!categories) {
@@ -153,7 +153,7 @@ const Frequency = () => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!frequencies) {
@@ -239,7 +239,7 @@ const Type = () => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!types) {
@@ -360,7 +360,7 @@ const Severity = () => {
   };
   if (loading) {
     return (
-      <img src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
+      <img alt="loading" src="https://gifimage.net/wp-content/uploads/2017/08/spinner-gif-13.gif" />
     );
   }
   if (!severities) {

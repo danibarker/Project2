@@ -67,7 +67,7 @@ exports.user_login = async function (req, res) {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (err) {
-    res.status(400).send(err.message);
+      res.status(400).send(err.message);
   }
 };
 

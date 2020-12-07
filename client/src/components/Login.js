@@ -21,7 +21,7 @@ export default function Login({setCurrentPage}) {
           }
           setCurrentPage('Navigation')
       } catch (error) {
-          setLoginFail(true)
+          setLoginFail(error.message)
       }
   }
 
@@ -52,8 +52,8 @@ export default function Login({setCurrentPage}) {
                             type="password"
                             onChange={(e)=>{changePassword(e.target.value)}}
                             placeholder="Enter Password"
-                                                /><br />
-                                                {loginFail ? <span style={{color:"red"}}>Login failed, please check username and password</span> : <span></span>}
+                                                /><br /><br />
+                                                {loginFail ? <span style={{ color: "red" }}>{loginFail}</span> : <span></span>}
                         </InputGroup>
                         <Button onClick={login} color="success" block>
                           Login

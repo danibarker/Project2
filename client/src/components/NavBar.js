@@ -9,7 +9,7 @@ export default function NavBar({ setCurrentPage }) {
       <div className="navBar">
         <Box display="flex" p={1} bgcolor="background.paper">
           <div style={{width:"10%",margin:"auto"}}>
-            <img
+            <img alt="Home"
               style={{ cursor:"pointer", width: "90%", margin:"0 5%"}}
               width="20px"
               src={logo}
@@ -20,7 +20,7 @@ export default function NavBar({ setCurrentPage }) {
             ></img>
           </div>
           <div style={{width:"70%"  , margin:"auto" }}>
-            <img
+            <img alt="The Movie Warning Database"
               src={titleImage}
               style={{ width: "90%", height: "auto", margin:"0 5%" }}
             ></img>
@@ -30,9 +30,9 @@ export default function NavBar({ setCurrentPage }) {
     display: "flex",
     justifyContent: "flex-end"}}>
             <button
-              style={{ width: "100%", height: "auto", padding: "0 20% 0 20%" }}
               
-            className="btn btn-success" style={{ fontSize: "2vw", paddingLeft:"5px",paddingRight:"5px",paddingTop:"0px",paddingBottom:"0px"}}
+              
+                          className="btn btn-success" style={{ width: "100%", height: "auto", fontSize: "2vw", paddingLeft:"5px",paddingRight:"5px",paddingTop:"0px",paddingBottom:"0px"}}
                 onClick={() => {
                   setCurrentPage("SignIn");
                 }}

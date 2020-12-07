@@ -114,6 +114,7 @@ export async function addMovie(tmdbID, movieName) {
 }
 
 export async function userLogin(username, password) {
+    
     let response = await fetch(serverURL + "/api/user/login", {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -122,6 +123,15 @@ export async function userLogin(username, password) {
             password: password,
         }),
     });
-    return response.json()
+    if (response.status === 200) {
+        let data = await response.json()
+        return data
+    } else {
+        let error = await response.text()
+        throw new Error(error)
+    }
+        
+        
+    
 
 }
