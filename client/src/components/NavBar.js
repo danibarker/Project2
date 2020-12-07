@@ -48,6 +48,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
           </div>
           <div
             style={{
+              alignItems: "center",
               width: "20%",
 
               display: "flex",
@@ -58,7 +59,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
               className=""
               style={{
                 cursor: "pointer",
-                fontSize: "1.5vw",
+                fontSize: "2.0vw",
                 padding: " 0px 5px",
               }}
               onClick={() => {
@@ -71,7 +72,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
               className=""
               style={{
                 cursor: "pointer",
-                fontSize: "1.5vw",
+                fontSize: "2.0vw",
                 padding: " 0px 5px",
               }}
               onClick={() => {
