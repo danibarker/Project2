@@ -40,7 +40,7 @@ export async function addResource(type, newResource, token) {
     "Authorization": `Bearer ${token}`,
     "Content-Type": "application/json"
   });
-  const request = new Request("api/warning/create", {
+  const request = new Request(serverURL+`/api/${type}/create`, {
     method: "POST",
     headers: headers,
     body: data,
