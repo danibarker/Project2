@@ -26,7 +26,6 @@ export default function SignUp({setCurrentPage}) {
     try {
       let response = await addUser(username, email, password)
       setCurrentPage('Navigation')
-      setCurrentPage('Navigation')
     } catch (error) {
       let errMsg = JSON.parse(error.message).message
       setRegisterFail(errMsg)
