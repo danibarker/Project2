@@ -76,17 +76,12 @@ export async function addUser(newUsername, newEmail, newPassword) {
     }),
   });
 
-  console.log('response.json')
   let data = await response.json();
   let message = JSON.stringify(data)
-  console.log('checking response status')
-  console.log('response status ' + response.status)
 
   if (response.status === 200) {
-    console.log('response is 200')
   
     //let data = await response.json()
-    console.log('data ' + message)
     return message
   } else {
     //throw new Error(error)
