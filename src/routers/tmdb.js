@@ -7,7 +7,7 @@ const { apiKey } = process.env.TMDB_API_KEY ? { apiKey: process.env.TMDB_API_KEY
 router.get("/popularMovies", async (req, res) => {
     console.log(apiKey)
     const response = await fetch(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&language=en-US&page=1`
     );
     const popularMovies = await response.json()
     res.send(popularMovies)
