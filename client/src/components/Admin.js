@@ -11,7 +11,7 @@ export default () => {
   );
   let pageToShow;
   const token = window.sessionStorage.getItem('token')
-  if (adminType == "Category") {
+  if (adminType === "Category") {
     pageToShow = <Category token={token}/>;
   } else if (adminType === "Frequency") {
     pageToShow = <Frequency token={token}/>;
