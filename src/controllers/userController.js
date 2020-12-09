@@ -34,7 +34,6 @@ exports.user_detail = async function (req, res) {
 // Handle user create on POST.
 exports.user_create_post = async function (req, res) {
   const newUser = req.body;
-  debug(`newuser ${newUser}`);
 
   const newRecord = {
     username: newUser.username,
@@ -45,17 +44,27 @@ exports.user_create_post = async function (req, res) {
 
   // add new record to database
   // result is the new record
-    try {
-        let response = await User.create(newRecord)
-        
-
-        res.status(200).json(response.toJSON());
-
-    } catch(error) {
-      debug(`Error: unable to create user: ${newUser}`); // failure
-      debug(`Error: user error: ${error}`);
+  try {
+    let response = await User.create(newRecord)
+    console.log('User created OK');
+    res.status(200).json(response.toJSON());
+  } catch(error) {
+    // failure
+    debug(`Error: user error: ${error}`);
+    if (error.name === 'MongoError' && error.code === 11000) {
+      // duplicate user and/or email
+      console.log('Username or email already used');
+      let data = {
+        status: 500,
+        message: 'Username or email already used'
+      }
+      res.status(500).send(data);
+    } else {
+      console.log('internal server error');
       res.status(500).json(error);
-    };
+    }
+    
+  };
 };
 
 exports.user_login = async function (req, res) {
