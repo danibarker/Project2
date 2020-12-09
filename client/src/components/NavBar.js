@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import logo from "../images/home.png";
 import titleImage from "../images/title.png";
 export default function NavBar({ currentPage, setCurrentPage }) {
-  const token = localStorage.getItem("token");
+  const token = window.sessionStorage.getItem("token");
   return (
     <>
       <div className="navBar">

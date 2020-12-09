@@ -33,7 +33,8 @@ exports.warning_create_post = async function (req, res) {
     debug(`newWarning ${newWarning}`)
     const newRecord = newWarning
     debug(`newRecord: ${newRecord}`);
-
+    console.log(req.user)
+    newRecord.userID = req.user._id
     // add new record to database
     try {
         let newWarnings = new Warning(newRecord)

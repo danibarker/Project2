@@ -10,8 +10,8 @@ export default () => {
     "Severity"
   );
   let pageToShow;
-  const token = localStorage.getItem('token')
-  if (adminType === "Category") {
+  const token = window.sessionStorage.getItem('token')
+  if (adminType == "Category") {
     pageToShow = <Category token={token}/>;
   } else if (adminType === "Frequency") {
     pageToShow = <Frequency token={token}/>;

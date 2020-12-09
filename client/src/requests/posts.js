@@ -65,7 +65,8 @@ export async function removeResource(type, newResource, token) {
 }
 
 export async function addUser(newUsername, newEmail, newPassword) {
-  fetch(serverURL + "/api/user/create", {
+
+  let response = await fetch(serverURL + "/api/user/create", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -74,7 +75,20 @@ export async function addUser(newUsername, newEmail, newPassword) {
       password: newPassword,
     }),
   });
+
+  let data = await response.json();
+  let message = JSON.stringify(data)
+
+  if (response.status === 200) {
+  
+    //let data = await response.json()
+    return message
+  } else {
+    //throw new Error(error)
+    throw new Error(message)
+  } 
 }
+
 export async function removeUser(username, token) {
   try {
     const headers = new Headers({

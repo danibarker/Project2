@@ -83,7 +83,6 @@ export default function App() {
                         
                         movieTitle={selectedMovie.title}
                         movieID={selectedMovie.id}
-                        userID={"5fc68a121262f52c7006d209"}
                     />
                 );
 
@@ -107,7 +106,7 @@ export default function App() {
                 return <Login setCurrentPage={setCurrentPage}/>
                 
             case "SignUp":
-                return <SignUp />;
+                return <SignUp setCurrentPage={setCurrentPage}/>;
 
             case "Admin":
                 return <Admin />;
