@@ -11,6 +11,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
         <Box display="flex" p={1} bgcolor="white">
           <div style={{ width: "10%" }}>
             <img
+              alt="Home"
               style={{
                 cursor: "pointer",
                 width: "90%",
