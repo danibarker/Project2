@@ -17,7 +17,8 @@ export default function Login({setCurrentPage}) {
       try {
           let response = await userLogin(username, password)
           if (response.token) {
-              localStorage.setItem("token",response.token)
+              window.sessionStorage.setItem("token", response.token)
+              
           }
           setCurrentPage('Navigation')
       } catch (error) {

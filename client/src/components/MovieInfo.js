@@ -146,7 +146,7 @@ export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitl
       </div>
 
           <div className="pageContainer warningPageContainer-Bottom">
-              {localStorage.getItem('token') ? (
+              {window.sessionStorage.getItem('token') ? (
                   <button className="btn btn-success" onClick={() => {
                       setCurrentPage('AddWarning')
                   }}>Add warning</button>) : (<button className="btn btn-danger" onClick={() => {

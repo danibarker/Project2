@@ -7,7 +7,6 @@ import { createNewWarning } from "../requests/posts";
 
 export default function AddWarning({
     setCurrentPage,
-    userID,
     movieID,
     movieTitle,
 }) {
@@ -126,7 +125,6 @@ export default function AddWarning({
                             setWarnings(
                                 warnings.concat([
                                     {
-                                        userID: userID,
                                         movieID: movieID,
                                         categoryID: category,
                                         frequencyID: frequency,
@@ -154,7 +152,7 @@ export default function AddWarning({
             <div className="part">
                 <button className = "btn btn-primary"
                     onClick={() => {
-                        createNewWarning(warnings, localStorage.getItem('token'));
+                        createNewWarning(warnings, window.sessionStorage.getItem('token'));
                         setCurrentPage("Thanks");
                     }}
                 >
