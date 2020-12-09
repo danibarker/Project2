@@ -110,30 +110,39 @@ export default function ViewMovieInfo({ setCurrentPage, tmdb, movieID, movieTitl
 
   return (
     <>
-          <div className="collapsible-tables pageContainer threeQuartersPageContainer">
+        <div className="collapsible-tables pageContainer threeQuartersPageContainer">
              
         <h2>{movieTitle}</h2> <div style={{ right:"60%", top: "20%", marginBottom:"10px" }} id="movieDesc">{movieDesc}</div>
-        <h3>Warnings:</h3>
-        <table border="2">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Severity</th>
-              <th>Frequency</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-                      {warningAverages.map((warning) => (
-                          <tr key={warningAverages.indexOf(warning)}>
-                <td data-title="Category">{warning.category}</td>
-                <td data-title="Severity">{warningLabelsfromValues.severities[warning.severity]}</td>
-                <td data-title="Frequency">{warningLabelsfromValues.frequencies[warning.frequency]}</td>
-                <td data-title="Type">{warningLabelsfromValues.types[warning.type]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+        {!warningAverages === [] ? 
+            <div>
+            <h3>Warnings:</h3>
+            <table border="2">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Severity</th>
+                  <th>Frequency</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {warningAverages.map((warning) => (
+                    <tr key={warningAverages.indexOf(warning)}>
+                      <td data-title="Category">{warning.category}</td>
+                      <td data-title="Severity">{warningLabelsfromValues.severities[warning.severity]}</td>
+                      <td data-title="Frequency">{warningLabelsfromValues.frequencies[warning.frequency]}</td>
+                      <td data-title="Type">{warningLabelsfromValues.types[warning.type]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+          : <div>
+              <h2>Be the first to add a warning!!</h2>
+          </div>
+}
+        </div>  
       </div>
 
           <div className="pageContainer warningPageContainer-Bottom">
