@@ -150,7 +150,7 @@ export default function AddWarning({
 
             <br />
             <div className="part">
-                <button className = "btn btn-primary"
+                <button className = "btn btn-warning"
                     onClick={() => {
                         createNewWarning(warnings, window.sessionStorage.getItem('token'));
                         setCurrentPage("Thanks");

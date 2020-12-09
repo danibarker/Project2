@@ -62,7 +62,7 @@ export default function Login({setCurrentPage}) {
                       </div>
                     </Form>
                     <br />
-                    <button onClick={()=>{setCurrentPage('SignUp')}}>Create an Account</button>
+                    <button className="btn btn-warning" onClick={()=>{setCurrentPage('SignUp')}}>Create an Account</button>
                     
                   </CardBody>
                 </Card>

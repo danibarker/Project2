@@ -19,6 +19,7 @@ export async function createNewWarning(warnings, token) {
           frequencyID: warning.frequencyID,
           typeID: warning.typeID,
           severityID: warning.severityID,
+          comment:warning.comment
         },
       }),
     });
@@ -126,7 +127,12 @@ export async function addMovie(tmdbID, movieName) {
     return addedMovie._id;
   }
 }
-
+export function userLogout(token) {
+  fetch(serverURL + "/api/user/logout", {
+    method: "post",
+    headers: {"Content-Type":"application/json", "Authorization":"Bearer "+token}
+  })
+}
 export async function userLogin(username, password) {
     
     let response = await fetch(serverURL + "/api/user/login", {
