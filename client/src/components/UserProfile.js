@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row} from "reactstrap";
 import { UncontrolledAlert } from 'reactstrap';
-import { updateUser } from "../requests/posts";
+import { updateUser, userLogout } from "../requests/posts";
 
 
 export default function UserProfile({setCurrentPage}) {
@@ -10,7 +10,8 @@ export default function UserProfile({setCurrentPage}) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [updateFail, setUpdateFail]= useState(false)
+  const [updateFail, setUpdateFail] = useState(false)
+  const [logoutFail, setLogoutFail] = useState('')
 
 
   // is the user logged in?
@@ -37,7 +38,7 @@ export default function UserProfile({setCurrentPage}) {
   const changeUser = async () => {
     // debugger;
     try {
-      let response = await updateUser(username, email, password)
+      let response = updateUser(username, email, password)
       setCurrentPage('Navigation')
     } catch (error) {
       let errMsg = JSON.parse(error.message).message
@@ -45,6 +46,16 @@ export default function UserProfile({setCurrentPage}) {
     }
   }
 
+  const logoutUser = async () => {
+    try {
+      userLogout(sessionStorage.getItem('token'))
+      setCurrentPage('Navigation')
+    } catch (error) {
+      let errMsg = JSON.parse(error.message)
+      setLogoutFail(errMsg)
+    }
+  }
+  
 
     return (
       <div className="app flex-row align-items-center">
@@ -89,7 +100,7 @@ export default function UserProfile({setCurrentPage}) {
                         <Button onClick={() => {setCurrentPage('Admin');}} color="success" block>
                           Admin
                         </Button>
-                        <Button onClick={() => {setCurrentPage('Logout');}} color="success" block>
+                        <Button onClick={logoutUser} color="success" block>
                           Logout
                         </Button>
                       </div>
