@@ -7,21 +7,15 @@ import { updateUser } from "../requests/posts";
 
 export default function UserProfile({setCurrentPage}) {
 
-    console.log('at very top')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [updateFail, setUpdateFail]= useState(false)
 
 
-  console.log('at top of UserProfile')
   // is the user logged in?
   //if (window.sessionStorage.getItem('token')) {
-  if (localStorage.getItem('token')) {
-    console.log('user is logged in')
-  
-  //  {updateFail ? <div style={{ color: "red", fontSize: "1.5em", fontStyle: "italic" }}>{updateFail}<br /><br /></div> : <div></div>}
-  } else {
+  if (!window.sessionStorage.getItem('token')) {
     console.log('user IS NOT logged in')
     return (
       <div style={{ width: "40%", margin: "auto" }}>
@@ -99,7 +93,7 @@ export default function UserProfile({setCurrentPage}) {
                         <Button onClick={changeUser} color="success" block>
                           Update account
                         </Button>
-                        <Button onClick={() => {setCurrentPage('Navigator');}} color="success" block>
+                        <Button onClick={() => {setCurrentPage('Admin');}} color="success" block>
                           Admin
                         </Button>
                       </div>

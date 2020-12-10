@@ -1,8 +1,6 @@
 import React from "react";
 import "../css/App.css";
 import Box from "@material-ui/core/Box";
-import logo from "../images/home2.png";
-import titleImage from "../images/title.png";
 export default function NavBar({ currentPage, setCurrentPage }) {
   const token = window.sessionStorage.getItem("token");
   return (
@@ -74,7 +72,11 @@ export default function NavBar({ currentPage, setCurrentPage }) {
                 padding: " 0px 5px",
               }}
               onClick={() => {
-                setCurrentPage("SignIn");
+                if (token) {
+                  setCurrentPage('UserProfile')
+                } else {
+                  setCurrentPage("SignIn");
+                }
               }}
             >
               {token ? "My Account" : "Log In"}

@@ -1,5 +1,6 @@
 const { User } = require("../db/models");
 const debug = require("debug")("mwdb:server");
+const bcrypt = require('bcryptjs')
 
 
 // Display list of all users.
@@ -131,7 +132,10 @@ exports.user_update_post = async function (req, res) {
   const userObj = req.body;
   debug(`User ${userObj}`);
   const user = userObj.username;
-
+  if (userObj.password) {
+    userObj.password = await bcrypt.hash(userObj.password, 8)
+  }
+  
   const response = await User.updateOne(
     {
       username: user,
