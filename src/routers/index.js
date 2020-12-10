@@ -53,7 +53,7 @@ router.get('/users', auth, user_controller.user_list);
 router.post('/user/login', user_controller.user_login);
 
 // POST request for logout
-router.post('/user/logout', user_controller.user_logout);
+router.post('/user/logout', auth, user_controller.user_logout);
 
 // ***********************************
 //  WARNING ROUTES
