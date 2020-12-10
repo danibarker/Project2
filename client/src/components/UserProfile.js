@@ -49,6 +49,7 @@ export default function UserProfile({setCurrentPage}) {
   const logoutUser = async () => {
     try {
       userLogout(sessionStorage.getItem('token'))
+      window.sessionStorage.removeItem('token')
       setCurrentPage('Navigation')
     } catch (error) {
       let errMsg = JSON.parse(error.message)
