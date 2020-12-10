@@ -26,7 +26,7 @@ function MovieList({ setMovie, setPage }) {
                 <div className="vertical-center">
                   <h4>
                     <div onClick={() => setMovie(results.title)}>
-                      {results.title}
+                      {results.title.length < 50 ? results.title : results.title.substr(0,50)+'...'}
                     </div>
                   </h4>
                 </div>
