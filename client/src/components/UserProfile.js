@@ -14,9 +14,7 @@ export default function UserProfile({setCurrentPage}) {
 
 
   // is the user logged in?
-  //if (window.sessionStorage.getItem('token')) {
   if (!window.sessionStorage.getItem('token')) {
-    console.log('user IS NOT logged in')
     return (
       <div style={{ width: "40%", margin: "auto" }}>
       <UncontrolledAlert color="danger">
@@ -37,10 +35,8 @@ export default function UserProfile({setCurrentPage}) {
   }
 
   const changeUser = async () => {
-    console.log('in changeUser')
     // debugger;
     try {
-      console.log('calling updateUser')
       let response = await updateUser(username, email, password)
       setCurrentPage('Navigation')
     } catch (error) {
