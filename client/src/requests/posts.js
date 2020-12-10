@@ -90,6 +90,28 @@ export async function addUser(newUsername, newEmail, newPassword) {
   } 
 }
 
+export async function updateUser(curUsername, newEmail, newPassword) {
+  let response = await fetch(serverURL + "/api/user/update", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: curUsername,
+      email: newEmail,
+      password: newPassword,
+    }),
+  });
+
+  let data = await response.json();
+  let message = JSON.stringify(data)
+
+  if (response.status === 200) {
+    return message
+  } else {
+    //throw new Error(error)
+    throw new Error(message)
+  } 
+}
+
 export async function removeUser(username, token) {
   try {
     const headers = new Headers({

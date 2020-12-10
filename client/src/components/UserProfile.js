@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Row} from "reactstrap";
 import { UncontrolledAlert } from 'reactstrap';
-import { updateUser } from "../requests/posts";
+import { updateUser, userLogout } from "../requests/posts";
 
 
 export default function UserProfile({setCurrentPage}) {
@@ -10,13 +10,12 @@ export default function UserProfile({setCurrentPage}) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [updateFail, setUpdateFail]= useState(false)
+  const [updateFail, setUpdateFail] = useState(false)
+  const [logoutFail, setLogoutFail] = useState('')
 
 
   // is the user logged in?
-  //if (window.sessionStorage.getItem('token')) {
   if (!window.sessionStorage.getItem('token')) {
-    console.log('user IS NOT logged in')
     return (
       <div style={{ width: "40%", margin: "auto" }}>
       <UncontrolledAlert color="danger">
@@ -25,8 +24,6 @@ export default function UserProfile({setCurrentPage}) {
       </div>
     );
   }
-
-
 
   const changeUsername = (username) => {
     setUsername( username );
@@ -39,11 +36,9 @@ export default function UserProfile({setCurrentPage}) {
   }
 
   const changeUser = async () => {
-    console.log('in changeUser')
     // debugger;
     try {
-      console.log('calling updateUser')
-      let response = await updateUser(username, email, password)
+      let response = updateUser(username, email, password)
       setCurrentPage('Navigation')
     } catch (error) {
       let errMsg = JSON.parse(error.message).message
@@ -51,10 +46,20 @@ export default function UserProfile({setCurrentPage}) {
     }
   }
 
+  const logoutUser = async () => {
+    try {
+      userLogout(sessionStorage.getItem('token'))
+      window.sessionStorage.removeItem('token')
+      setCurrentPage('Navigation')
+    } catch (error) {
+      let errMsg = JSON.parse(error.message)
+      setLogoutFail(errMsg)
+    }
+  }
+  
 
     return (
       <div className="app flex-row align-items-center">
-        <h2>Update User Profile Component</h2>
           <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
@@ -95,6 +100,9 @@ export default function UserProfile({setCurrentPage}) {
                         </Button>
                         <Button onClick={() => {setCurrentPage('Admin');}} color="success" block>
                           Admin
+                        </Button>
+                        <Button onClick={logoutUser} color="success" block>
+                          Logout
                         </Button>
                       </div>
                     </Form>
