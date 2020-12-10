@@ -90,10 +90,10 @@ export async function addUser(newUsername, newEmail, newPassword) {
   } 
 }
 
-export async function updateUser(curUsername, newEmail, newPassword) {
+export async function updateUser(curUsername, newEmail, newPassword, token) {
   let response = await fetch(serverURL + "/api/user/update", {
     method: "post",
-    headers: { "Content-Type": "application/json" },
+    headers: {  "Authorization": `Bearer ${token}`,"Content-Type": "application/json" },
     body: JSON.stringify({
       username: curUsername,
       email: newEmail,

@@ -134,6 +134,11 @@ exports.user_update_post = async function (req, res) {
   const user = userObj.username;
   if (userObj.password) {
     userObj.password = await bcrypt.hash(userObj.password, 8)
+  } else {
+    delete userObj.password
+  }
+  if (!userObj.email) {
+    delete userObj.email
   }
   
   const response = await User.updateOne(

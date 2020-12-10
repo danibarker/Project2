@@ -38,7 +38,7 @@ export default function UserProfile({setCurrentPage}) {
   const changeUser = async () => {
     // debugger;
     try {
-      let response = updateUser(username, email, password)
+      let response = updateUser(username, email, password, window.sessionStorage.getItem('token'))
       setCurrentPage('Navigation')
     } catch (error) {
       let errMsg = JSON.parse(error.message).message
