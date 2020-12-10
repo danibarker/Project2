@@ -7,7 +7,9 @@ export default function NavBar({ currentPage, setCurrentPage }) {
     <>
       <div className="navBar">
         <Box display="flex" p={1}>
-          <div style={{width:"10%", alignItems:"center", display:"flex"}}>
+          <div className="nav-home-div" style={{}} onClick={() => {
+                setCurrentPage("Navigation");
+              }} >
             {/* <img
               alt="Home"
               style={{
@@ -24,23 +26,13 @@ export default function NavBar({ currentPage, setCurrentPage }) {
                 setCurrentPage("Navigation");
               }}
             ></img> */}
-            <svg style={{cursor:"pointer"}}onClick={() => {
-                setCurrentPage("Navigation");
-              }} width="3vw" height="3vw" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg className="nav-home-icon bi bi-house" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fillRule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
   <path fillRule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-</svg>
+</svg> <div className="nav-home-title">Home</div>
           </div>
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              
-              width: "70%",
-              margin: "auto",
-              fontFamily: "raleway",
-    fontSize: "4vw"
-            }}
+            className = "nav-title"
           >
             {/* <img
               alt="The Movie Warning Database"
@@ -54,49 +46,36 @@ export default function NavBar({ currentPage, setCurrentPage }) {
               }}
             ></img> */}
             The Movie Warning Database
+            <sub className="nav-title-sub">-Crowdsourced content warnings-</sub>
           </div>
-          <div
-            style={{
-              alignItems: "center",
-              width: "20%",
-
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
+          <div className="nav-user-actions"
+            
           >
             <span
-              className=""
-              style={{
-                cursor: "pointer",
-                fontSize: "2.0vw",
-                padding: " 0px 5px",
+              style={{visibility:token ? "hidden" : "visible"}}
+              className="nav-sign-in"
+              onClick={() => {
+                
+                  setCurrentPage("SignIn");
+                
               }}
+            >
+              {token ? '' : "Log In"}
+            </span>
+            <span
+              className="nav-sign-up"
               onClick={() => {
                 if (token) {
                   setCurrentPage('UserProfile')
                 } else {
-                  setCurrentPage("SignIn");
+                  setCurrentPage("SignUp");
                 }
               }}
             >
-              {token ? "My Account" : "Log In"}
-            </span>
-            <span
-              className=""
-              style={{
-                cursor: "pointer",
-                fontSize: "2.0vw",
-                padding: " 0px 5px",
-              }}
-              onClick={() => {
-                setCurrentPage("SignUp");
-              }}
-            >
-              {token ? "" : "Sign Up"}
+              {token ? window.sessionStorage.getItem('username') : "Sign Up"}
             </span>
           </div>
         </Box>
-        <div>{currentPage}</div>
       </div>
     </>
   );

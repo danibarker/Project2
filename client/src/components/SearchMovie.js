@@ -14,7 +14,7 @@ export default function SearchMovie({ setPage, setMovie }) {
         setResults(suggestions);
     }
     return (
-        <div id="notebooks">
+        <div id="search-bar">
             <input
                 id="query"
                 type="text"
@@ -26,10 +26,10 @@ export default function SearchMovie({ setPage, setMovie }) {
             {results.map((result) => (
                 <li key={result.id} onClick={async () => {
                     const id = await addMovie(result.id, result.title)
-                    setMovie({ tmdb: result.id, title: result.title, id: id })
+                    setMovie({ tmdb: result.id, title: result.title, id: id , posterPath:result.poster_path})
                     setPage("MovieInfo")
                 }
-                }>{result.title} ({result.release_date.split('-')[0]})</li>
+                }>{result.title} {result.release_date ? "(" + result.release_date.split('-')[0] + ")" : ""}</li>
             ))}
         </div>
     );

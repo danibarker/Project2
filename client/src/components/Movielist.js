@@ -34,7 +34,7 @@ function MovieList({ setMovie, setPage }) {
               <img
                 onClick={async () => {
                   const id = await addMovie(results.id, results.title);
-                            setMovie({ tmdb: results.id, title: results.title, id: id })
+                  setMovie({ tmdb: results.id, title: results.title, id: id, posterPath:results.poster_path })
                   setPage("MovieInfo");
                 }}
                 src={
@@ -42,6 +42,7 @@ function MovieList({ setMovie, setPage }) {
                   results.poster_path
                 }
                 alt="no "
+                style={{cursor:"pointer"}}
               />
             </div>
           </Box>

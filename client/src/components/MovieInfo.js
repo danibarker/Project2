@@ -11,6 +11,7 @@ export default function ViewMovieInfo({
   tmdb,
   movieID,
   movieTitle,
+  posterPath,
 }) {
   const [warnings, setWarnings] = useState([]);
   const [warningModelData, setWarningModelData] = useState();
@@ -88,7 +89,7 @@ export default function ViewMovieInfo({
     const freq = findInfoFromID("frequencies", warning.frequencyID, "value");
     const sev = findInfoFromID("severities", warning.severityID, "value");
     const type = findInfoFromID("types", warning.typeID, "value");
-    
+
     if (Object.keys(warningTotals).includes(warning.categoryID)) {
       warningTotals[warning.categoryID]["frequencies"].push(freq);
       warningTotals[warning.categoryID]["severities"].push(sev);
@@ -101,14 +102,14 @@ export default function ViewMovieInfo({
       };
     }
     if (warning.comment) {
-      warningTotals[warning.categoryID].hasComments = true
+      warningTotals[warning.categoryID].hasComments = true;
     }
   });
   /*turning those lists of freq,types,sevs into a single number from the average */
   const warningAverages = [];
   Object.keys(warningTotals).forEach((category) => {
     warningAverages.push({
-      hasComments: warningTotals[category].hasComments? true : false,
+      hasComments: warningTotals[category].hasComments ? true : false,
       category: findInfoFromID("categories", category, "title"),
       frequency: Math.round(average(warningTotals[category].frequencies)),
       type: Math.round(average(warningTotals[category].types)),
@@ -139,10 +140,25 @@ export default function ViewMovieInfo({
       <div className="collapsible-tables pageContainer threeQuartersPageContainer">
         <h2>{movieTitle}</h2>
         <div
-          style={{ right: "60%", top: "20%", marginBottom: "10px" }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            right: "60%",
+            top: "20%",
+            marginBottom: "10px",
+          }}
           id="movieDesc"
         >
-          {movieDesc}
+          <div style={{ maxWidth: "600px", minWidth: "200px" }}>
+            {movieDesc}
+          </div>
+          <img
+            className="movieImage"
+            style={{ width: "220px" }}
+            src={" https://image.tmdb.org/t/p/w220_and_h330_face" + posterPath}
+            alt="no "
+          />
         </div>
         <div>
           {warningAverages.length !== 0 ? (
@@ -160,27 +176,34 @@ export default function ViewMovieInfo({
                 <tbody>
                   {warningAverages.map((warning) => (
                     <tr key={warningAverages.indexOf(warning)}>
-                      <td
-                        
-                        data-title="Category"
-                      ><div style={{display: "flex",
-                        justifyContent: "space-between"}}>
-                        {warning.category}
-                        {warning.hasComments ?
-                          <button
-                            className="btn btn-sm btn-danger"
-                            style={{
-                              margin: "2px 0",
-                              display: "flex",
-                              justifyContent: "right",
-                            }}
-                            onClick={() => {
-                              setCommentCategory(warning.category);
-                              setShowComments(true);
-                            }}
-                          >
+                      <td data-title="Category">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          {warning.category}
+                          {warning.hasComments ? (
+                            <button
+                              className="btn btn-sm btn-danger"
+                              style={{
+                                margin: "2px 0",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                flexWrap: "wrap",
+                              }}
+                              onClick={() => {
+                                setCommentCategory(warning.category);
+                                setShowComments(true);
+                              }}
+                            >
                               comments
-                        </button> : <></>}
+                            </button>
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       </td>
                       <td data-title="Severity">
@@ -199,7 +222,9 @@ export default function ViewMovieInfo({
             </div>
           ) : (
             <div>
-              <h2>Be the first to add a warning!!</h2>
+              <h2 style={{ marginTop: "30px" }}>
+                Be the first to add a warning!!
+              </h2>
             </div>
           )}
         </div>

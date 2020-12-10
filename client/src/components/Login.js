@@ -16,9 +16,10 @@ export default function Login({setCurrentPage}) {
       // debugger;
       try {
           let response = await userLogin(username, password)
-          if (response.token) {
+        if (response.token) {
+              console.log(response)
               window.sessionStorage.setItem("token", response.token)
-              
+              window.sessionStorage.setItem("username", response.user.username)
           }
           setCurrentPage('Navigation')
       } catch (error) {
@@ -45,7 +46,7 @@ export default function Login({setCurrentPage}) {
                           <Input
                             type="text"
                             onChange={(e)=>{changeUsername(e.target.value)}}
-                            placeholder="Enter Email"
+                            placeholder="Enter Username"
                           />
                         </InputGroup>
                         <InputGroup className="mb-4">

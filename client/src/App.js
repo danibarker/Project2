@@ -99,7 +99,7 @@ export default function App() {
             case "MovieInfo":
                 return (
                     <div>
-                        <ViewMovieInfo tmdb={selectedMovie.tmdb} setCurrentPage={setCurrentPage} movieTitle={selectedMovie.title} movieID={selectedMovie.id} />
+                        <ViewMovieInfo tmdb={selectedMovie.tmdb} setCurrentPage={setCurrentPage} movieTitle={selectedMovie.title} movieID={selectedMovie.id} posterPath={selectedMovie.posterPath} />
                     </div>
                 );
 

@@ -134,6 +134,7 @@ export default function AddWarning({
                                     },
                                 ])
                             );
+                            document.getElementById('commentBox').value = ''
                         } else {
                             setUnchosenError(true);
                         }
