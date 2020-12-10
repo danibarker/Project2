@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Thanks from "./components/Thanks";
 import Admin from './components/Admin'
+import UserProfile from './components/UserProfile'
 export default function App() {
     let [currentPage, setCurrentPage] = useState("Navigation");
     let [selectedMovie, setSelectedMovie] = useState({title: 'The Lion King', id:'5fc1e881f7d9654d5c99ad9d', tmdb:""});
@@ -110,7 +111,8 @@ export default function App() {
 
             case "Admin":
                 return <Admin />;
-
+            case "UserProfile":
+                return <UserProfile setCurrentPage={setCurrentPage} />
             default:
                 return <h1>Error</h1>;
         }
