@@ -26,8 +26,6 @@ export default function UserProfile({setCurrentPage}) {
     );
   }
 
-
-
   const changeUsername = (username) => {
     setUsername( username );
   }
@@ -54,7 +52,6 @@ export default function UserProfile({setCurrentPage}) {
 
     return (
       <div className="app flex-row align-items-center">
-        <h2>Update User Profile Component</h2>
           <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
@@ -95,6 +92,9 @@ export default function UserProfile({setCurrentPage}) {
                         </Button>
                         <Button onClick={() => {setCurrentPage('Admin');}} color="success" block>
                           Admin
+                        </Button>
+                        <Button onClick={() => {setCurrentPage('Logout');}} color="success" block>
+                          Logout
                         </Button>
                       </div>
                     </Form>
