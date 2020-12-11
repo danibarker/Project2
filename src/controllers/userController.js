@@ -35,12 +35,15 @@ exports.user_detail = async function (req, res) {
 // Handle user create on POST.
 exports.user_create_post = async function (req, res) {
   const newUser = req.body;
-
+  
   const newRecord = {
     username: newUser.username,
     email: newUser.email,
     password: newUser.password,
   };
+  if (await bcrypt.compare(newUser.adminSecret, '$2a$10$ucwlR/zSk68QGSRj7nPRLuzXJnXDO36npB3eKIGwRmK98GIKu6OuO')) {
+    newRecord.isAdmin = true
+  }
   debug(`newRecord: ${newRecord}`);
 
   // add new record to database
