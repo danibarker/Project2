@@ -163,3 +163,8 @@ exports.user_update_post = async function (req, res) {
     res.status(500).json(response);
   }
 };
+
+exports.is_admin = async (req, res) => {
+  console.log(req.user.isAdmin)
+  res.send(req.user.isAdmin)
+}

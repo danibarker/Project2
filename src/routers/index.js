@@ -54,7 +54,9 @@ router.post('/user/login', user_controller.user_login);
 
 // POST request for logout
 router.post('/user/logout', auth, user_controller.user_logout);
-
+                   
+// POST request for checkadmin
+router.post('/user/isadmin', auth, user_controller.is_admin)
 // ***********************************
 //  WARNING ROUTES
 // ***********************************

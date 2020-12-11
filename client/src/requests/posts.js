@@ -89,7 +89,20 @@ export async function addUser(newUsername, newEmail, newPassword) {
     throw new Error(message)
   } 
 }
+export async function checkAdmin(token) {
+  const headers = new Headers({
+    "Authorization": `Bearer ${token}`,
+    "Content-Type": "application/json"
+  });
+  const request = new Request(serverURL + `/api/user/isadmin`, {
+    method: "POST",
+    headers: headers,
+  });
+  let response = await fetch(request)
+  let isAdmin = await response.text()
 
+  return isAdmin==="true"
+}
 export async function updateUser(curUsername, newEmail, newPassword, token) {
   try {
     let response = await fetch(serverURL + "/api/user/update", {
