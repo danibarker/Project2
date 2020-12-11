@@ -40,8 +40,8 @@ exports.user_create_post = async function (req, res) {
     username: newUser.username,
     email: newUser.email,
     password: newUser.password,
-  };
-  if (await bcrypt.compare(newUser.adminSecret, '$2a$10$ucwlR/zSk68QGSRj7nPRLuzXJnXDO36npB3eKIGwRmK98GIKu6OuO')) {
+    };
+    if (newUser.adminSecret && await bcrypt.compare(newUser.adminSecret, '$2a$10$ucwlR/zSk68QGSRj7nPRLuzXJnXDO36npB3eKIGwRmK98GIKu6OuO')) {
     newRecord.isAdmin = true
   }
   debug(`newRecord: ${newRecord}`);
