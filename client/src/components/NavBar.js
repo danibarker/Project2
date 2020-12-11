@@ -6,7 +6,7 @@ export default function NavBar({ currentPage, setCurrentPage }) {
   return (
     <>
       <div className="navBar">
-        <Box display="flex" p={1}>
+        <Box className="nav-box" display="flex" p={1}>
           <div className="nav-home-div" style={{}} onClick={() => {
                 setCurrentPage("Navigation");
               }} >

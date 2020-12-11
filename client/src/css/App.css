@@ -264,7 +264,7 @@ ul {
   margin: 10px;
 }
 @media only screen and (max-width: 500px) {
-  .MuiBox-root-2 {
+  .nav-box{
     font-size: x-small;
   }
 }
@@ -280,7 +280,7 @@ ul {
   width: 40px;
 }
 
-.MuiBox-root-2 {
+.nav-box {
   display: flex;
   justify-content: space-between;
 }
