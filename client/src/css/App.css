@@ -271,6 +271,7 @@ ul {
 @media only screen and (max-width: 9000px) {
   .movieImage {
     position: absolute;
+    visibility: hidden;
     left: -1000px;
     top: -1000px;
   }
@@ -372,7 +373,7 @@ ul {
   }
 }
 .movieImage {
-  position: absolute;
+  width: 100%;
   right: 50px;
   top: 50px;
 }

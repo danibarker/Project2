@@ -71,13 +71,13 @@ export default function UserProfile({setCurrentPage}) {
                         className="totheRight"
                         style={{  }}
                       >
-                        <InputGroup className="mb-3">
+                        {/* <InputGroup className="mb-3">
                           <Input
                             type="text"
                             onChange={(e)=>{changeUsername(e.target.value)}}
                             placeholder="Enter username"
                           />
-                        </InputGroup>
+                        </InputGroup> */}
                         <InputGroup className="mb-3">
                           <Input
                             type="text"

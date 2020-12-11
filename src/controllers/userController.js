@@ -131,7 +131,8 @@ exports.user_delete_post = async function (req, res) {
 exports.user_update_post = async function (req, res) {
   const userObj = req.body;
   debug(`User ${userObj}`);
-  const user = userObj.username;
+  const user = req.user.username;
+  userObj.username = user
   if (userObj.password) {
     userObj.password = await bcrypt.hash(userObj.password, 8)
   } else {
