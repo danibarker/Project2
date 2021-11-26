@@ -7,10 +7,10 @@ class App extends Component {
     return (
      
       <div className="App">
+        <h1>THE MOVIE WARNING DATABASE</h1>
         <SearchMovie />
-        
-
-      </div>
+        <Movielist/>
+       </div>
       
     );
   }

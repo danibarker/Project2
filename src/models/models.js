@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
+
+// ****************************************
+// USER
+//
 const userSchema = new mongoose.Schema(
     {
         username: {
@@ -41,52 +43,24 @@ const userSchema = new mongoose.Schema(
                 },
             },
         ],
-        isAdmin: {
-            type: Boolean,
-            default: false
-        }
     },
     {
         timestamps: true,
     }
 );
-userSchema.methods.generateAuthToken = async function () {
-    const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT);
 
-    user.tokens = user.tokens.concat({ token });
-    await user.save();
-    return token;
-};
-userSchema.methods.toJSON = function () {
-    const user = this;
-    const userObject = user.toObject();
-    delete userObject.password;
-    delete userObject.tokens;
-    return userObject;
-};
-userSchema.statics.findByCredentials = async (username, password) => {
-    const user = await User.findOne({ username: username });
-    if (!user) {
-        throw new Error("Username does not exist");
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-        throw new Error("Username and Password do not match");
-    }
-    return user;
-};
-// Hash password
-userSchema.pre("save", async function (next) {
-    const user = this;
-    if (user.isModified("password")) {
-        user.password = await bcrypt.hash(user.password, 8);
-    }
-    next();
-});
 const User = mongoose.model("User", userSchema);
+
+userSchema.virtual("warnings", {
+    ref: "Warning",
+    localField: "_id",
+    foreignField: "userID",
+});
+
+
+// ****************************************
+// MOVIE
+//
 const movieSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -107,6 +81,10 @@ movieSchema.virtual("warnings", {
     foreignField: "movieID",
 });
 
+
+// ****************************************
+// WARNING
+//
 const warningSchema = new mongoose.Schema(
     {
         userID: {
@@ -139,7 +117,7 @@ const warningSchema = new mongoose.Schema(
             required: true,
             ref: "Severity",
         },
-        comment: {
+        description: {
             type: String,
         },
     },
@@ -149,70 +127,81 @@ const warningSchema = new mongoose.Schema(
 );
 const Warning = mongoose.model("Warning", warningSchema);
 
+
+// ****************************************
+// CATEGORY - added unique
+//
 const categorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true
     },
 });
 const Category = mongoose.model("Category", categorySchema);
-const frequencySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Frequency = mongoose.model("Frequency", frequencySchema);
-const severitySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Severity = mongoose.model("Severity", severitySchema);
-const typeSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    value: {
-        type: Number,
-        required: true,
-    }
-});
-const Type = mongoose.model("Type", typeSchema);
+
 categorySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "categoryID",
 });
+
+
+// ****************************************
+// FREQUENCY - added unique
+//
+const frequencySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
+});
+const Frequency = mongoose.model("Frequency", frequencySchema);
+
 frequencySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "frequencyID",
 });
-typeSchema.virtual("warnings", {
-    ref: "Warning",
-    localField: "_id",
-    foreignField: "typeID",
+
+
+// ****************************************
+// SEVERITY - added unique
+//
+const severitySchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
 });
+const Severity = mongoose.model("Severity", severitySchema);
+
 severitySchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
     foreignField: "severityID",
 });
 
-userSchema.virtual("warnings", {
+
+// ****************************************
+// TYPE - added unique
+//
+const typeSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
+});
+const Type = mongoose.model("Type", typeSchema);
+
+typeSchema.virtual("warnings", {
     ref: "Warning",
     localField: "_id",
-    foreignField: "userID",
+    foreignField: "typeID",
 });
+
+
 module.exports = { User, Movie, Warning, Category, Frequency, Type, Severity };

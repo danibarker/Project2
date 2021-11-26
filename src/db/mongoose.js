@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const connectionURL = 'mongodb+srv://admin:KDCYfjlXj8Qg0eTp@cluster0.wpqc6.mongodb.net/media-warnings?retryWrites=true&w=majority';
+const connectionURL = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/mwdb'
+console.log(connectionURL)
 mongoose.connect(connectionURL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
